@@ -1,0 +1,158 @@
+@charset "UTF-8";
+
+/*tipos de formato
+opentytpe (otf)
+truetype (ttf)
+
+
+
+*/
+
+
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Kaushan+Script&display=swap');
+
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Kaushan+Script&family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+    @font-face {
+        font-family: 'Love';
+        src: url('../fontes/storyttf.ttf') format('truetype');
+        font-weight: normal;
+        font-style: italic;
+        
+    }
+body{
+    
+    font-size: 16px;
+    background-image: radial-gradient(circle, #c4d9db57, #65e3e6d5, #CFE3E6);
+    background-attachment: fixed;
+    
+    
+}
+
+main {
+    
+    background-color: rgba(255, 255, 255, 0.411);
+    width: 600px;
+    padding: 10px;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.534);
+}
+
+h1{
+font-family: 'Love' Arial, Helvetica, sans-serif;
+color:  #255A61;
+text-align: center;
+text-shadow: 1px 1px 2px  #070707de;
+font-family: 'Love';
+font-weight: normal;
+font-style: italic;
+}
+
+h2{
+    color: #124747;
+    text-shadow: 1px 1px 2px  #070707b9;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: right;
+}
+
+p {
+    text-align: justify;
+
+    
+}
+
+div:hover{
+    background-color: royalblue;
+
+}
+
+div {
+    left: 500px;
+    height: 0px;
+    position: relative;
+    top: 10pt;
+    display: inline-block;
+    background-color: aquamarine;
+    color: red;
+    border: 1em solid black;
+    text-align: center;
+    height: 200px;
+    width: 200px;
+    
+}
+
+div#d3:hover{
+    background-color: royalblue;
+}
+
+div#d3{
+  
+    left: 150px;
+    height: 0px;
+    position: relative;
+    top: 190pt;
+    display: inline-block;
+    background-color: aquamarine;
+    color: red;
+    border: 1em solid black;
+    text-align: center;
+    height: 200px;
+    width: 200px;
+}
+
+div#d4:hover{
+    background-color: darkblue;
+}
+
+
+
+div#d4{
+  
+    left: -500px;
+    height: 0px;
+    position: relative;
+    top: 50pt;
+    display: inline-block;
+    background-color: aquamarine;
+    color: red;
+    border: 1em solid black;
+    text-align: center;
+    height: 200px;
+    width: 200px;
+}
+
+div > span{
+    display: none;
+}
+div > span{
+    display: block;
+}
+
+b#testando:hover{
+    background-color: red;
+}
+
+b#testando{
+   color: black;
+   font-size: 1.5em;
+}
+.destaque{
+    background-color: rgba(64, 226, 205, 0.274);
+    color: rgba(245, 11, 11, 0.438);
+}
+span#teste{
+    left: 150px;
+    height: 0px;
+    position: relative;
+    top: 190pt;
+    display: inline-block;
+    background-color: aquamarine;
+    color: red;
+    text-align: center;
+}
+
+body a{
+    text-decoration: none;
+}
+

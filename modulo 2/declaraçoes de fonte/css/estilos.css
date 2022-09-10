@@ -1,0 +1,72 @@
+@charset "UTF-8";
+/*
+peso da fonte
+
+font-weight
+weight: peso / width: largura / height: altura
+
+peso (lighter: magrinho  normal: normal bold: mas escura bolder: mas escura ainda )
+
+ font: italic bolder 1.5em 'work sans' sans-serif;
+    */
+
+   
+
+
+
+
+body{
+    font: italic bolder 1.5em 'work sans' sans-serif;
+   /* font-family: 'work sans', Arial, Helvetica, sans-serif;*/
+    font-size: 16px;
+    background-image: radial-gradient(circle, #c4d9db57, #65e3e6d5, #CFE3E6);
+    background-attachment: fixed;
+    
+    /*font-size: 1em;
+    font-style: italic;
+    font-weight: bolder;
+    text-decoration: underline;*/
+    
+}
+
+main {
+    
+    background-color: rgba(255, 255, 255, 0.411);
+    width: 600px;
+    padding: 10px;
+    margin: auto;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.534);
+}
+
+h1{
+color:  #255A61;
+text-align: center;
+text-shadow: 1px 1px 2px  #070707de;
+font-family: 'Times New Roman', Times, serif;
+}
+
+h2{
+    color: #124747;
+    text-shadow: 1px 1px 2px  #070707b9;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+p {
+
+    text-align: justify;
+
+    
+}
+
+
+
+b#testando{
+   color: black;
+   font-size: 1.5em;
+}
+
+body a{
+    text-decoration: none;
+}
+

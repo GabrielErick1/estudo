@@ -1,0 +1,10 @@
+/*para fazer dgrad em body mas configuraçao global (linear-gradient: to right)*/
+
+{
+height: 100%;
+}
+body{
+    background-image: radial-gradient(circle, #c4d9db57, #65e3e6d5, #CFE3E6);
+    background-attachment: fixed;
+}
+

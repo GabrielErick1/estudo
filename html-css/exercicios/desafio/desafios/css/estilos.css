@@ -1,0 +1,44 @@
+body{
+background-color: rgb(241, 12, 12);
+}
+h1#marge {
+    left: 560px;
+    height: 0px;
+    position: relative;
+    top: -15pt;
+}
+
+menu#teste{
+    left: 400px;
+    height: 0px;
+    position: relative;
+    top: -28pt;
+
+}
+
+menu#vdeo{
+    left: 540px;
+    height: 0px;
+    position: relative;
+    top: 10pt;
+
+}
+
+p#naves {
+
+    color: aqua;
+    left: 700px;
+    height: 0px;
+    position: relative;
+    top: 250pt;
+
+}
+
+p#vamos {
+    color: rgb(40, 235, 82);
+    left: 670px;
+    height: 0px;
+    position: relative;
+    top: 220pt;
+}
+

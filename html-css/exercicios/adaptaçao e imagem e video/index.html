@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="imagen/incone.ico">
+    <title>adaptaçao de imagen</title>
+</head>
+<body>
+
+    <h1>testando carga de imagen dinamicas</h1>
+  <picture>
+    <source media="(max-width: 750px)" srcset="imagens/pequena.png" type="image/png">
+    <source media="(max-width: 1050px)" srcset="imagens/media.png" type="image/png">
+    <img src="imagens/grande.png" alt="a imagen flexivel funciona">
+  </picture>
+
+
+<h2>audios para pc</h2>
+<p>reproduzindo audio</p>
+
+
+
+<audio preload="metadata" controls autoplay loop>
+  <source src="midia/videoplayback.m4a" type="audio/mp3">
+</audio>
+
+<br>
+<br>
+
+<video width="600" poster="imagen/fundo1.jpg" controls autoplay loop>
+
+<source src="midia/v-video.mp4" type="video/mp4">
+</video>
+<br>
+<br>
+
+<h3>inserindo videos youtube etc</h3>
+
+<br>
+<br>
+
+
+<div class="video"><iframe width="560" height="315" src="https://www.youtube.com/embed/Hkuy72SlahQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+
+
+</body>
+</html>
