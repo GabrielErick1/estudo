@@ -1,0 +1,120 @@
+@charset "UTF-8";
+
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    background-image: radial-gradient( #dd687b25, rgba(242, 242, 242, 0.822), #F2F2F2);
+    background-attachment: fixed;
+    margin: -9px;
+    
+    
+}
+
+header {
+   /* position: relative;*/
+    background-color: #b7cbd55b;
+    border: 10px solid #d6e5e7bf;
+    padding: 10px;
+    margin: 10px;
+   /* left: 0px;
+    right: 110px;
+    top: -130px;*/
+      
+}
+
+img {
+    left: 1040px;
+    height: 186px;
+    position: absolute;
+    top: 3px;
+}
+
+h1{
+    color: #76bbd6;
+    font-weight: bolder;
+    left: 1px;
+    height: 0px;
+    position: relative;
+    top: -35px;
+}
+
+h2 {
+    color: #66dee2;
+    font-weight: bolder;
+    left: 170px;
+    height: 0px;
+    position: relative;
+    top: -22px;
+}
+
+nav {
+    background-color: #ebebeb;
+    padding: 1px;
+    max-width: max-content;
+    box-shadow: 1px 1px 3px rgb(14 14 14);
+    border: 5px solid #eef6f9;
+    left: 590px;
+    height: -2px;
+    position: relative;
+    top: -75px;
+}
+
+nav > a {
+    text-decoration: none;
+    color: rgba(240, 23, 23, 0.637);
+    font-weight: bolder;
+    margin-right: 8px; 
+}
+
+nav a:hover{
+    color: #000000;
+    font-weight: bold;
+    text-decoration: underline;
+
+}
+
+main {
+    position: relative;
+   /* text-align: center;*/
+    background-color: #e8f0f3;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 3px;
+    box-shadow: 1px 1px 4px #030303;
+  /*  left: 0px;
+    right: 110px;
+    top: 0px;*/
+
+}
+
+article{
+    background-color: #edf0f1;
+    padding: 0.1px;
+}
+
+article > p {
+    color: rgba(0, 0, 0, 0.76);
+    font-weight: bolder;
+}
+
+footer{
+    background-color: #f1f1ee;
+    color: rgb(8, 8, 8);
+    font-weight: bolder;
+    padding: 2px;
+    margin: 0px;
+    text-align: center;
+    box-shadow: 1px 1px 9px rgb(14 14 14);
+    border: 5px solid #fdfdf9;
+    /* max-width: max-content;*/
+    
+  
+    
+}
+
+footer > p {
+    margin: 0px;
+}
+
+/*display inline-block e um display inline mas pode ser feito coisas de bloco nele*/

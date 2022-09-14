@@ -1,0 +1,206 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Kaushan+Script&family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+
+:root {
+    --cor2: ;
+    --cor3: ;
+    --cor4: ;
+    --cor5: ;
+--fontepadrao: Arial, Helvetica, sans-serif;
+--fonteh1: 'Dancing Script', 'cursive';
+--fonteh2: 'Kaushan Script', 'cursive';
+--fonteh3: 'Work Sans', sans-serif;
+}
+
+* {
+    margin: 8px;
+    padding: 1px;
+}
+
+img#sol {
+    width: 30%;
+}
+
+img.lua {
+    width: 15%;
+}
+
+img#teste {
+    width: 15%;
+}
+
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Kaushan+Script&display=swap');
+
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Kaushan+Script&family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+    @font-face {
+        font-family: 'Love';
+        src: url('../fontes/storyttf.ttf') format('truetype');
+        font-weight: normal;
+        font-style: italic;
+        
+    }
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    background: linear-gradient(115deg, #ffffff, #e1e5e6, #e1e6e7 );
+    background-attachment: fixed;
+    margin: -9px;
+  
+   
+    
+    
+}
+
+header {
+   /* background-color: #b7cbd55b;*/
+   background: linear-gradient(115deg, #f2f5f5, #f0f3f3, #e3e5e6 );
+   border: 1px solid #d6e5e7bf;
+   padding: 23px;
+   width: 500px;
+    margin: auto;
+    text-align: center;
+
+   
+}
+
+header h1{
+    font-family: var(--fonteh2);
+    color: #76bbd6;
+    font-weight: bolder;
+    text-shadow: 2px 4px 0px black;
+    text-align: center;
+
+}
+div {
+    text-align: center;
+}
+
+/*header nav {
+    background: linear-gradient(to right, #d0e5e5, #e3e3e3, #c6f4fd );
+    padding: 1px;
+    max-width: max-content;
+    box-shadow: 1px 1px 3px rgb(14 14 14);
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.082);
+    border: 5px solid #eef6f9;
+    text-align: center;
+    position: relative;
+    margin-top: -7px;
+    left: 15px;
+    top: 5px;
+
+
+}
+
+nav > a {
+    
+    text-decoration: none;
+    color: rgba(240, 23, 23, 0.637);
+    font-weight: bolder;
+    margin-right: 8px; 
+    opacity: 0,5;
+    transition: 200ms all;
+    
+   
+}
+
+nav a:hover{
+    background-color: #5f797a;
+    color: #000000;
+    padding: 5px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: solid;
+    transition-duration: 1s;
+
+}*/
+
+
+
+section {
+    text-align: center;
+   background: linear-gradient(to right, #eceeee, #dde3e4, #e3e7e7 );
+   border: 1px solid #d6e5e7bf;
+    padding: 20px;
+    border-radius: 5px 5px;
+    box-shadow: 1px 1px 4px #030303;
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.082);
+    min-height: 320px;
+    max-height: 1600px;
+    width: 508px;
+    margin: auto;
+    
+   
+
+}
+
+/*img {
+    width: 100%;
+}*/
+
+header picture#sol img{
+    margin-top: -2px;
+    margin-left: 100px;
+   display: block;
+   margin: auto;
+   max-width: 300px;
+   position: relative;
+    margin-top: -17px;
+    left: 15px;
+    top: 3px;
+     
+ }
+
+ footer{
+        text-align: center;
+        background-color: #dbe0e1;
+        color: rgb(8, 8, 8);
+        font-weight: bolder;
+        padding: 0px;
+        margin: auto;
+        box-shadow: 1px 4px 12px rgb(14 14 14);
+        border: 0px solid #e8f1f3;
+        text-shadow: 3px 2px 0px rgb(0 0 0 / 4%);
+        max-width: max-content;
+    }
+
+
+ 
+ footer > p {
+    color: #ff1616;
+    font-weight: bold;
+     margin: 2px;
+ }
+
+ footer p > a{
+    text-decoration: none;
+    color: #00000081;
+    font-weight: bolder;
+    padding: 10px;
+    opacity: 0,5;
+    transition: 200ms all;
+ }
+
+ footer > p > a:hover {
+    color: #000000;
+    background-color: #1e9fd3;
+    padding: 5px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: solid;
+    transition-duration: 1s;
+   
+ }
+
+
+
+/*display inline-block e um display inline mas pode ser feito coisas de bloco nele*/
+
+
+
