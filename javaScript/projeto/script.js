@@ -4,7 +4,7 @@ var img = window.document.getElementById('imagen')
 var data = new Date()
 var hora = data.getHours()
 //var hora = 8 //mude o horario e veja oque acontece
-msg.innerHTML = `<strong>agora sao exatamente ${hora} horas.</strong>`
+msg.innerHTML = `<strong> ${data}</strong>`
 
 if (hora >= 5 && hora < 12) {
     // Bom Dia
