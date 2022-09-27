@@ -1,0 +1,39 @@
+@media screen and (max-width: 760px) { /*defino tela de celular tablet etc*/
+
+    header {
+    flex-direction: column;
+}
+main {
+    flex-direction: column;
+}
+
+h2 {
+    font-size: 38px;
+}
+form {
+    margin: 0 auto;
+    width: 80%;
+}
+
+input {
+    align-self: center;
+}
+
+footer {
+    align-self: center;
+}
+
+img {
+    /*display: none; aqui ela desaparece*/
+    width: 338px;
+    display: block;
+    margin: 0 auto;
+    padding: auto;
+}
+
+ul {
+    text-align: center;
+}
+
+
+}

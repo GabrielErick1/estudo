@@ -1,0 +1,134 @@
+@charset "UTF-8";
+
+
+
+
+body {
+    background-image: linear-gradient(to bottom, rgb(89, 182, 236), rgb(120, 230, 224));
+    color: white;
+    font-family: poppinsregular; /*minhas fontes*/
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px;
+
+}
+
+header {
+    display: flex; /*posso movimenta*/
+    flex-direction: row; /*aqui deixa em uma linha so*/
+    justify-content: space-between; /*aqui da um espaço no elemento (e o space-around) cria espaço ao redos dos elementos aquele que eu fazia antes*/
+    align-items: center; /*aqui alinhamos nossos intens ou elemento*/
+}
+
+
+
+li {
+    display: inline;
+    margin: 20px; /*ela pode ser usada para separa um texto*/ 
+    line-height: 50px;
+}
+
+a {
+    color: white;
+    text-decoration: none; /* tira a linha trassada*/
+   
+}
+
+a:hover {
+    background-color: #c232ee;
+    color: #000000;
+    padding: 1px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: solid;
+    transition-duration: 1s;  /*se eu coloca o all ele nao da efeito*/
+    
+}
+
+div#titles {
+flex-direction: column; /*para ela nao muda o jeito dela por nd serauma coluna e ponto*/
+line-height: 10px; /*aqui eu junto um texto separado*/
+}
+
+
+
+h1 {
+    font-weight: 200; /*afino ou dou mas largura a uma letra*/
+}
+
+#dcrt {
+    border: 1px solid #c232ee;
+    padding: 5px;
+    border-radius: 50px;
+}
+
+main {
+display: flex;
+flex-direction: row;
+margin-top: 50px;
+}
+
+h2 {
+    font-size: 50px; /*almenta tamanho da letra*/
+    line-height: 20px; /*da espaçamaneto entre as letras tambem*/
+    font-family: poppinsmedium;
+}
+#cor {
+    color: rgb(111, 43, 175);
+}
+
+footer {
+    text-align: center;
+    max-width: 1200px;
+}
+
+p {
+    line-height: 20px;
+    max-width: 500px;
+    font-size: poppinslight;
+}
+
+img {
+    width: 100%;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    
+}
+
+input {
+color: white;
+margin-top: 5px;
+padding: 15px;
+height: 20px;
+font-size: 15px;
+border-radius: 15px 15px;
+border: 2px solid #c232ee;
+font: bolder;
+}
+
+form [type="submit"] {
+    height: 47px;
+    width: 35%;
+    background-color: #c232ee;
+    border-radius: 10px 10px;
+    cursor: pointer;
+}
+
+#ctral {
+    color: black;
+    margin: 0 auto;
+    padding: auto;
+    text-align: center;
+
+}
+#cors1 {
+    color: red;
+}
+
+#cors1:hover {
+    color: white;
+}
