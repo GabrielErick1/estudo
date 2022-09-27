@@ -15,3 +15,5 @@ estudando html, css3, e javaScript
 <a href="https://loordssh.github.io/estudo/javaScript/projeto3/">Tabuada em javaScript</a>
 
 <a href="https://loordssh.github.io/estudo/javaScript/testedeobsidade/">Teste de IMC em javaScript, html, css3</a>
+
+<a href="https://loordssh.github.io/estudo/javaScript/calculadora/">calculadora em js e html</a>

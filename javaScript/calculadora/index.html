@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/font.css">
+    <title>cauculadora</title>
+</head>
+<body>
+
+    <header> 
+        <h1>Calculadora</h1>
+    </header>
+
+    <form>
+         <p>Numero: <input class="dgt3" id="dgt1" type="number" placeholder="digite primeiro numero"></p>
+
+         <p><select name="selector" id="selector"> 
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">x</option>
+            <option value="/">/</option>
+         </select></p>
+
+         <p>Numero: <input class="dgt3" id="dgt2" type="number" placeholder="digite segundo numero"></p>
+
+         <p><input  id="btn" type="button" value="Somar" onclick="clicar()"></p>
+
+         <p id="res"></p>
+
+    </form>
+
+    <footer>
+        <p>Desenvolvido por <a href=" https://www.facebook.com/biel.erick.186" target="_blank"> Gabriel Erick</a></p>
+  </footer>
+    
+    <script src="assets/js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+body {
+    font-size: 20px;
+    background-image: linear-gradient(to bottom, rgb(89, 182, 236), rgb(120, 230, 224));
+    color: white;
+    font-family: poppinsregular; /*minhas fontes*/
+  display: flex;
+  text-align: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+header {
+    font-family: cursive;
+    font-size: 30px;
+    margin-top: -15px;
+}
+
+form {
+    margin-top: 0px;
+    text-align: center;
+}
+
+#btn {
+    background-color: #62bdc9;
+    color: black;
+    padding: 1px;
+    border-radius: 10px;
+    font-weight: bold;
+    text-decoration: solid;
+    width: 44%;
+}
+
+#btn:hover {
+    cursor: pointer;
+    background-color: #a3c9cc;
+    color: white;
+    padding: 1px;
+    border-radius: 10px;
+    font-weight: bold;
+    text-decoration: solid;
+    transition-duration: 1s;  /*se eu coloca o all ele nao da efeito*/
+}
+
+.dgt3 {
+    width: 80%;
+    height: 34px;
+    box-sizing: border-box;
+}
+
+#res {
+    color: rgb(0, 0, 0);
+    font-weight: bolder;
+}
+
+footer {
+
+    margin-top: 129px;
+    text-align: center;
+}
+
