@@ -99,6 +99,14 @@ form {
     
 }
 
+form [type="input"] {
+
+
+    display: inline;
+
+
+    }
+
 input {
 color: white;
 margin-top: 5px;
