@@ -20,4 +20,4 @@ estudando html, css3, e javaScript
 
 <a href="https://GabrielErick1.github.io/estudo/javaScript/calculadora/">calculadora em js e html</a>
 
-<a href="https://GabrielErick1.github.io/estudo/quiz/public/">Quiz</a>
+<a href="https://GabrielErick1.github.io/estudo/quiz/">Quiz</a>
