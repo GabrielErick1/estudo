@@ -44,7 +44,9 @@ url: '<a href="https://GabrielErick1.github.io/estudo/quiz/">Quiz</a>'
 },
     ]
 
+console.log(projetos)
 </script>
+
 <h1>estudando html, css3, e javaScript<h1>
 <br>
 
