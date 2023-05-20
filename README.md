@@ -2,7 +2,7 @@
 
 <br>
 
-<nav>
+<nav className={stylos.nav}>
 <ul>
 <li>
 <a  href="https://GabrielErick1.github.io/estudo/htmlsite/siteteste/">site em html basico</a>
