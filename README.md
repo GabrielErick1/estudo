@@ -7,8 +7,8 @@
 
 <ul>
 
-<li className="li">
-<a className="a"  href="https://GabrielErick1.github.io/estudo/htmlsite/siteteste/">site em html basico</a>
+<li class="li">
+<a class="a"  href="https://GabrielErick1.github.io/estudo/htmlsite/siteteste/">site em html basico</a>
 </li>
 
 <br>
