@@ -4,10 +4,13 @@
 <br>
 
 <nav className={stylos.nav}>
+
 <ul>
+
 <li>
 <a  href="https://GabrielErick1.github.io/estudo/htmlsite/siteteste/">site em html basico</a>
 </li>
+
 <br>
 <li>
 <a href="https://GabrielErick1.github.io/estudo/htmlsite/site/">Landing Page Responsivo</a>
