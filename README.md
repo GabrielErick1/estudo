@@ -1,11 +1,57 @@
 # estudo
 
+
+<script>
+    const projetos = [
+
+ {       
+url: '<a  href="https://GabrielErick1.github.io/estudo/htmlsite/siteteste/">site em html basico</a>'
+ },
+
+{
+url: '<a href="https://GabrielErick1.github.io/estudo/htmlsite/site/">Landing Page Responsivo</a>'
+},
+
+{
+url: '<a href="https://GabrielErick1.github.io/estudo/htmlsite/sitenv/">Sites Rsponsivo JavaSCript Acesse pelo pc e celular</a>'
+},
+
+{
+url: '<a href="https://GabrielErick1.github.io/estudo/javaScript/projeto/">mine PJ em javaScript</a>'
+},
+{
+url: '<a href="https://GabrielErick1.github.io/estudo/javaScript/projeto1/">contador de idade em javaScript</a>'
+},
+
+{
+<a 'href="https://GabrielErick1.github.io/estudo/javaScript/projeto2/">Contagem Inteligente em javaScript</a>'
+},
+
+{
+url: '<a href="https://GabrielErick1.github.io/estudo/javaScript/projeto3/">Tabuada em javaScript</a>'
+},
+
+{
+url: '<a href="https://GabrielErick1.github.io/estudo/javaScript/testedeobsidade/">Teste de IMC em javaScript, html, css3</a>'
+},
+
+{
+url: '<a href="https://GabrielErick1.github.io/estudo/javaScript/calculadora/">calculadora em js e html</a>'
+},
+
+{
+url: '<a href="https://GabrielErick1.github.io/estudo/quiz/">Quiz</a>'
+},
+    ]
+
+</script>
 <h1>estudando html, css3, e javaScript<h1>
+
 
 <nav>
 <ul>
 <li>
-<a href="https://GabrielErick1.github.io/estudo/htmlsite/siteteste/">site em html basico</a>
+<a  href="https://GabrielErick1.github.io/estudo/htmlsite/siteteste/">site em html basico</a>
 </li>
 <br>
 <li>
