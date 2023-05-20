@@ -19,14 +19,21 @@
 <li>
 <a href="https://GabrielErick1.github.io/estudo/javaScript/projeto/">mine PJ em javaScript</a>
 </li>
+
 <br>
+
+<li>
 <a href="https://GabrielErick1.github.io/estudo/javaScript/projeto1/">contador de idade em javaScript</a>
 </li>
+
 <br>
+
 <li>
 <a href="https://GabrielErick1.github.io/estudo/javaScript/projeto2/">Contagem Inteligente em javaScript</a>
 </li>
+
 <br>
+
 <li>
 <a href="https://GabrielErick1.github.io/estudo/javaScript/projeto3/">Tabuada em javaScript</a>
 </li>
