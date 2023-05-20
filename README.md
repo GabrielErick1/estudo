@@ -1,6 +1,6 @@
 # estudo
 
-estudando html, css3, e javaScript
+<h1>estudando html, css3, e javaScript<h1>
 
 <nav>
 <ul>
