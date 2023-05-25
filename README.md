@@ -8,7 +8,7 @@
 <ul>
 
 <li id="li">
-<a id="a"  href="https://GabrielErick1.github.io/estudo/htmlsite/siteteste/">site em html basico</a>
+<a id="a"  href="https://GabrielErick1.github.io/estudo/htmlsite/siteteste/">Site em Html básico</a>
 </li>
 
 <br>
@@ -20,13 +20,13 @@
 <br>
 
 <li id="li">
-<a id="a" href="https://GabrielErick1.github.io/estudo/htmlsite/sitenv/">Sites Rsponsivo JavaSCript Acesse pelo pc e celular</a>
+<a id="a" href="https://GabrielErick1.github.io/estudo/htmlsite/sitenv/">Site Responsivo JavaSCript Acesse pelo PC e celular</a>
 </li>
 
 <br>
 
 <li id="li">
-<a id="a" href="https://GabrielErick1.github.io/estudo/javaScript/projeto/">mine PJ em javaScript</a>
+<a id="a" href="https://GabrielErick1.github.io/estudo/javaScript/projeto/">mine Projeto em javaScript</a>
 </li>
 
 <br>
@@ -56,7 +56,7 @@
 <br>
 
 <li id="li">
-<a id="a" href="https://GabrielErick1.github.io/estudo/javaScript/calculadora/">calculadora em js e html</a>
+<a id="a" href="https://GabrielErick1.github.io/estudo/javaScript/calculadora/">Calculadora em JS e html</a>
 </li>
 
 <br>
