@@ -4,7 +4,28 @@ import { appErr } from '../ultils/appError.js';
 import bcript from 'bcryptjs';
 
 class useControlers {
-  /* show() {}*/
+  async show(req, res) {
+    const { email, password } = req.query;
+    try {
+      if (!email && !password) {
+        throw new appErr('Dados inválidos!');
+      }
+      const database = await sqlConection();
+      const user = await database.get('SELECT * FROM users WHERE email = (?)', [
+        email,
+      ]);
+      if (!user) {
+        throw new appErr('Nenhum usuário foi encontrado! ');
+      }
+      const validPassword = await bcript.compare(password, user.password);
+      if (!validPassword) {
+        throw new appErr('Credenciais inválidas!');
+      }
+      res.json();
+    } catch (err) {
+      res.status(statusCode).json({ message: err.message });
+    }
+  }
   async create(req, res) {
     const { name, email, password } = req.body;
     try {
