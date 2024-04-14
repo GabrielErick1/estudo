@@ -3,7 +3,7 @@ import { useControlers } from '../controls/userControllers.js';
 import { noteControlles } from '../controls/notesController.js';
 import { tagsController } from '../controls/tagsController.js';
 const usersRoutes = Router();
-const { create, update } = new useControlers();
+const { create, update, show } = new useControlers();
 const { indexTags } = new tagsController();
 const { createNotes, deleteNotes, showNotes } = new noteControlles();
 
@@ -16,10 +16,11 @@ const { createNotes, deleteNotes, showNotes } = new noteControlles();
   }
 };*/
 usersRoutes.post('/users', create);
-usersRoutes.put('/users/:id', update);
+usersRoutes.get('/showusers', show);
+usersRoutes.put('/updateusers/:id', update);
 usersRoutes.post('/notes/:id_usuario', createNotes);
 usersRoutes.get('/shownotes', showNotes);
-usersRoutes.delete('/notes/:id_note', deleteNotes);
+usersRoutes.delete('/deletenotes/:id_note', deleteNotes);
 usersRoutes.get('/tags/:id_usuario', indexTags);
 
 export { usersRoutes };
