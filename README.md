@@ -16,6 +16,12 @@
 <br>
 
 <li id="li">
+<a id="a" href="https://GabrielErick1.github.io/estudo/javaScript/testedeobsidade/">Teste de IMC em javaScript, html, css3</a>
+</li>
+
+<br>
+
+<li id="li">
 <a id="a" href="https://GabrielErick1.github.io/estudo/quiz/">Quiz react</a>
 </li>
 
@@ -28,12 +34,6 @@
 
 <li id="li">
 <a id="a" href="https://GabrielErick1.github.io/estudo/htmlsite/sitenv/">Landing Page 2</a>
-</li>
-
-<br>
-
-<li id="li">
-<a id="a" href="https://GabrielErick1.github.io/estudo/javaScript/testedeobsidade/">Teste de IMC em javaScript, html, css3</a>
 </li>
 
 <br>
