@@ -22,11 +22,6 @@
 <br>
 
 <li id="li">
-<a id="a" href="https://GabrielErick1.github.io/estudo/quiz/">Quiz react</a>
-</li>
-
-<br>
-<li id="li">
 <a id="a" href="https://GabrielErick1.github.io/estudo/htmlsite/site/">Landing Page 1</a>
 </li>
 
@@ -40,6 +35,20 @@
 
 <li id="li">
 <a id="a" href="https://GabrielErick1.github.io/estudo/projetogit01/">Guithub Favoritos</a>
+</li>
+
+<br>
+<h1 id="h1" >React</h1>
+<br>
+
+<li id="li">
+<a id="a" href="https://GabrielErick1.github.io/estudo/quiz/">Quiz react</a>
+</li>
+
+<br>
+
+<li id="li">
+<a id="a" href="https://github.com/GabrielErick1/estudo/tree/main/dogs">Dogs front completo</a>
 </li>
 
 <br>
