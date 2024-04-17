@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <link rel="stylesheet" href="stylos/stylos.css">
+    
+</head>
+<body>
+    <header>
+        <h1>Calculadora</h1>
+    </header>
+    <main>
+        <section>
+            <div class="calculadoratela">
+                <div class="tela">
+                    <div id="acumlador" class="acc"></div>
+                    <div id="total" class="total" ></div>
+                </div>
+                <div class="numeros action" onclick="CleanAll()">C</div>
+                <div class="numeros action" onclick="CleanCurrentEntry()">CE</div>
+                <div class="numeros action" onclick="Insert('/')">/</div>
+                <div class="numeros action" onclick="Insert('%')">%</div>
+                <div class="numeros" onclick="Insert('1')">1</div>
+                <div class="numeros" onclick="Insert('2')">2</div>
+                <div class="numeros" onclick="Insert('3')">3</div>
+                <div class="numeros action" onclick="Insert('x')">x</div>
+                <div class="numeros" onclick="Insert('4')">4</div>
+                <div class="numeros" onclick="Insert('5')">5</div>
+                <div class="numeros" onclick="Insert('6')">6</div>
+                <div class="numeros action" onclick="Insert('-')">-</div>
+                <div class="numeros" onclick="Insert('7')">7</div>
+                <div class="numeros" onclick="Insert('8')">8</div>
+                <div class="numeros" onclick="Insert('9')">9</div>
+                <div class="numeros action" onclick="Insert('+')">+</div>
+                <div class="numeros zero" onclick="Insert(0)">0</div>
+                <div class="numeros" onclick="AddComma()">,</div>
+                <div class="numeros action resultado" onclick="Result()">=</div>
+
+            </div>
+        </section>
+    </main>
+
+    <script src="script/script.js"></script>
+</body>
+</html>
