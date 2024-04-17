@@ -7,44 +7,22 @@
 
 <ul>
 
+<br>
+
 <li id="li">
-<a id="a"  href="https://GabrielErick1.github.io/estudo/htmlsite/siteteste/">Site em Html básico</a>
+<a id="a" href="https://GabrielErick1.github.io/estudo/quiz/">calculadora</a>
 </li>
 
 <br>
 
 <li id="li">
-<a id="a" href="https://GabrielErick1.github.io/estudo/htmlsite/site/">Landing Page Responsivo</a>
+<a id="a" href="https://GabrielErick1.github.io/estudo/htmlsite/site/">Landing Page 1</a>
 </li>
 
 <br>
 
 <li id="li">
-<a id="a" href="https://GabrielErick1.github.io/estudo/htmlsite/sitenv/">Site Responsivo JavaSCript Acesse pelo PC e celular</a>
-</li>
-
-<br>
-
-<li id="li">
-<a id="a" href="https://GabrielErick1.github.io/estudo/javaScript/projeto/">mine Projeto em javaScript</a>
-</li>
-
-<br>
-
-<li id="li">
-<a id="a" href="https://GabrielErick1.github.io/estudo/javaScript/projeto1/">contador de idade em javaScript</a>
-</li>
-
-<br>
-
-<li id="li">
-<a id="a" href="https://GabrielErick1.github.io/estudo/javaScript/projeto2/">Contagem Inteligente em javaScript</a>
-</li>
-
-<br>
-
-<li id="li">
-<a id="a" href="https://GabrielErick1.github.io/estudo/javaScript/projeto3/">Tabuada em javaScript</a>
+<a id="a" href="https://GabrielErick1.github.io/estudo/htmlsite/sitenv/">Landing Page 2</a>
 </li>
 
 <br>
@@ -56,7 +34,7 @@
 <br>
 
 <li id="li">
-<a id="a" href="https://GabrielErick1.github.io/estudo/javaScript/calculadora/">Calculadora em JS e html</a>
+<a id="a" href="https://GabrielErick1.github.io/estudo/quiz/">Quiz</a>
 </li>
 
 <br>
