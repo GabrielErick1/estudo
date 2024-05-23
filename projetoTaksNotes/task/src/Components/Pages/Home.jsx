@@ -23,6 +23,9 @@ export const Home = () => {
   const [search, setSearch] = useState('');
   const [notes, setNotes] = useState([]);
   const tegSelected = (isSelectdTag) => {
+    if (isSelectdTag === 'todos') {
+      return setTagsSelectd([]);
+    }
     const verifTagSelected = tagsSelectd.includes(isSelectdTag);
     if (verifTagSelected) {
       const newTags = tagsSelectd.filter((tag) => tag !== isSelectdTag);
@@ -60,6 +63,8 @@ export const Home = () => {
 
     GetNotes();
   }, []);
+
+  const handleDetail = async () => {};
   return (
     <ContainerHm>
       <Brand>
