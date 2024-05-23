@@ -7,11 +7,10 @@ import CadastreNotas from '../Components/Pages/CadastreNotas.jsx';
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route path="*" element={<Navigate to="/" replace />} />
       <Route path="/" element={<Home />} />
-      <Route path="/details/:id" element={<Details />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/cadastrarnotas" element={<CadastreNotas />} />
+      <Route path="/details/:id" element={<Details />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );

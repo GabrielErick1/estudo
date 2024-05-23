@@ -15,8 +15,9 @@ import { Section } from '../Section/Section.jsx';
 import Note from './Note.jsx';
 import { useEffect, useState } from 'react';
 import { api } from '../../services/api.js';
-
+import { useNavigate } from 'react-router-dom';
 export const Home = () => {
+  const navigate = useNavigate();
   const { token } = useAuth();
   const [tags, setTags] = useState([]);
   const [tagsSelectd, setTagsSelectd] = useState([]);
@@ -64,7 +65,9 @@ export const Home = () => {
     GetNotes();
   }, []);
 
-  const handleDetail = async () => {};
+  const handleDetail = async (id) => {
+    navigate(`/details/${id}`);
+  };
   return (
     <ContainerHm>
       <Brand>
@@ -101,7 +104,11 @@ export const Home = () => {
       <Content>
         <Section title="Minhas notas">
           {notes.map((note) => (
-            <Note key={String(note.id)} data={note} />
+            <Note
+              key={String(note.id)}
+              data={note}
+              onClick={() => handleDetail(note.id)}
+            />
           ))}
         </Section>
       </Content>

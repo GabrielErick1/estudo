@@ -1,12 +1,14 @@
 import { Container, Links, Content } from './style.js';
+import { useNavigate } from 'react-router-dom';
 import Buttons from '../Components/Buttons/Buttons.jsx';
 import Cabecalho from '../Components/Header/cabecalho.jsx';
 import { Section } from '../Components/Section/Section.jsx';
 import { Tags } from '../Components/Tags/Tags.jsx';
 import { ButtonText } from '../Components/Buttons/ButtonText.jsx';
 export const Details = () => {
+  const navigate = useNavigate();
   function HandlkeClick() {
-    console.log('ola mundo');
+    navigate('/');
   }
   return (
     <Container>

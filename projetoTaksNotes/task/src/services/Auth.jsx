@@ -1,6 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { api } from './api.js';
-import userInit from '../assets/useerannimo.jpg';
 const AuthContext = createContext();
 
 const Auth = ({ children }) => {
