@@ -1,0 +1,40 @@
+const createUsers = `
+CREATE TABLE IF NOT EXISTS users (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name VARCHAR(100),
+  email VARCHAR(100) UNIQUE,
+  password VARCHAR(100),
+  avatar VARCHAR(255) NULL,
+  create_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  update_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS notes (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  title TEXT,
+  description TEXT,
+  id_usuario INTEGER,
+  create_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  update_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (id_usuario) REFERENCES users(id)
+);
+
+create table IF NOT EXISTS tags (
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+id_usuario integer,
+id_notes integer,
+name text,
+FOREIGN KEY (id_usuario) REFERENCES users(id),
+FOREIGN KEY (id_notes) REFERENCES notes(id)
+);
+
+CREATE TABLE IF NOT EXISTS links (
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+note_id INTEGER,
+url TEXT,
+create_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+FOREIGN KEY (note_id) REFERENCES notes(id)
+);
+`;
+
+export { createUsers };
