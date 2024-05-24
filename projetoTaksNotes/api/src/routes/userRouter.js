@@ -23,7 +23,7 @@ usersRoutes.post('/users', create);
 usersRoutes.put('/updateusers', ensuerVerifAuth, update);
 usersRoutes.post('/notes', ensuerVerifAuth, createNotes);
 usersRoutes.get('/shownotes', ensuerVerifAuth, showNotes);
-usersRoutes.delete('/deletenotes/:id_note', ensuerVerifAuth, deleteNotes);
+usersRoutes.delete('/deletenotes/:id', ensuerVerifAuth, deleteNotes);
 usersRoutes.get('/tags', ensuerVerifAuth, indexTags);
 usersRoutes.get('/notes/:id', ensuerVerifAuth, indexNotes);
 usersRoutes.patch(
