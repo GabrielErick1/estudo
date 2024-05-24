@@ -43,8 +43,9 @@ export const Details = () => {
             ))}
           </Section>
           <Section title="Marcadores">
-            <Tags name="aaaaa" />
-            <Tags name="bbbb" />
+            {notes.tags?.map((tgs) => (
+              <Tags key={tgs.id} name={tgs.name} />
+            ))}
           </Section>
           <Buttons title="voltar" onClick={HandlkeClick} />
         </Content>
