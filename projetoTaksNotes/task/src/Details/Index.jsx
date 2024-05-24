@@ -22,7 +22,7 @@ export const Details = () => {
     };
     fetchNotes();
   }, [id]);
-  console.log(notes);
+
   return (
     <Container>
       <Cabecalho />
@@ -30,23 +30,17 @@ export const Details = () => {
         <Content>
           <ButtonText title="excluir Notas" />
 
-          <h1>sobre o texto </h1>
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Qui hic
-            quaerat fugiat doloribus animi error nihil dignissimos? Earum,
-            laudantium temporibus vitae unde sapiente blanditiis atque veniam.
-            Itaque sed saepe ipsam!
-          </p>
+          <h1>{notes.title}</h1>
+          <p>{notes.description}</p>
 
           <Section title="Links Ulteis">
-            <Links>
-              <li>
-                <a href="#">link1</a>
-              </li>
-              <li>
-                <a href="#">link2</a>
-              </li>
-            </Links>
+            {notes.links?.map((link) => (
+              <Links key={link.id}>
+                <li>
+                  <a href={link.url}>{link.url}</a>
+                </li>
+              </Links>
+            ))}
           </Section>
           <Section title="Marcadores">
             <Tags name="aaaaa" />
