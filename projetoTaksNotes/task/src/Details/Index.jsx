@@ -1,15 +1,28 @@
 import { Container, Links, Content } from './style.js';
 import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Buttons from '../Components/Buttons/Buttons.jsx';
 import Cabecalho from '../Components/Header/cabecalho.jsx';
 import { Section } from '../Components/Section/Section.jsx';
 import { Tags } from '../Components/Tags/Tags.jsx';
 import { ButtonText } from '../Components/Buttons/ButtonText.jsx';
+import { useEffect, useState } from 'react';
+import { api } from '../services/api.js';
 export const Details = () => {
+  const { id } = useParams();
+  const [notes, setNotes] = useState([]);
   const navigate = useNavigate();
   function HandlkeClick() {
     navigate('/');
   }
+  useEffect(() => {
+    const fetchNotes = async () => {
+      const response = await api.get(`/notes/${id}`);
+      setNotes(response.data);
+    };
+    fetchNotes();
+  }, [id]);
+  console.log(notes);
   return (
     <Container>
       <Cabecalho />

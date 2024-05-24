@@ -42,18 +42,18 @@ class noteControlles {
       const { id } = req.params;
       const notes = await knex('notes').where({ id }).first();
       const tags = await knex('tags')
-        .where({ id_note: notes.id })
+        .where({ id_notes: notes.id })
         .orderBy('name');
-      const links = await knex('links')
-        .where({ id_note: notes.id })
-        .orderBy('created_at');
 
+      const links = await knex('links')
+        .where({ note_id: notes.id })
+        .orderBy('create_at');
       if (!notes) {
         throw new appErr('este usuario ainda nao cadastrou uma nota');
       }
       res.json({ ...notes, tags, links });
     } catch (err) {
-      res.status(err.statusCodes).json({ erro: err.message });
+      res.status(400).json({ erro: err.message });
     }
   }
   async deleteNotes(req, res) {
