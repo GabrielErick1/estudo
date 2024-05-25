@@ -22,13 +22,18 @@ export const Details = () => {
     };
     fetchNotes();
   }, [id]);
+  const deleteNotes = async () => {
+    const response = await api.delete(`/deletenotes/${notes.id}`)
+    console.log(response);
+   
+  }
 
   return (
     <Container>
       <Cabecalho />
       <main>
         <Content>
-          <ButtonText title="excluir Notas" />
+          <ButtonText onClick={deleteNotes} title="excluir Notas" />
 
           <h1>{notes.title}</h1>
           <p>{notes.description}</p>

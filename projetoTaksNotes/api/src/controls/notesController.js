@@ -56,18 +56,22 @@ class noteControlles {
       res.status(400).json({ erro: err.message });
     }
   }
+
   async deleteNotes(req, res) {
     try {
-      const { id_note } = req.params;
-      const notesDeletada = await knex('notes').where({ id: id_note }).delete();
+      const { id } = req.params;
+      const notesDeletada = await knex('notes').where({id}).delete();
+      console.log(notesDeletada);
       if (notesDeletada === 0) {
         throw new appErr('Nota não encontrada');
       }
-      res.json();
+      res.json({message: "nota excluida com sucesso"});
     } catch (err) {
-      res.status(err.statusCode).json({ erro: err.message });
+      console.log(err.message);
+      res.status(400).json({ erro: err.message });
     }
   }
+
   async showNotes(req, res) {
     try {
       const { title, tags } = req.query;
