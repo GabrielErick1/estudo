@@ -33,9 +33,10 @@ export const Details = () => {
       <main>
         <Content>
           <ButtonText onClick={deleteNotes} title="excluir Notas" />
-
-          <h1>{notes.title}</h1>
-          <p>{notes.description}</p>
+          <section>
+            <h1>{notes.title}</h1>
+            <p>{notes.description}</p>
+          </section>
 
           <Section title="Links Ulteis">
             {notes.links?.map((link) => (
