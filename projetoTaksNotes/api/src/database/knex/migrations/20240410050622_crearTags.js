@@ -3,7 +3,7 @@ const up = (knex) =>
     table.increments('id').primary();
     table.text('name').notNullable();
     table
-      .integer('id_note')
+      .integer('id_notes')
       .references('id')
       .inTable('notes')
       .onDelete('CASCADE');

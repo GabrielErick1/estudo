@@ -23,10 +23,9 @@ export const Details = () => {
     fetchNotes();
   }, [id]);
   const deleteNotes = async () => {
-    const response = await api.delete(`/deletenotes/${notes.id}`)
-    console.log(response);
-   
-  }
+    const response = await api.delete(`/deletenotes/${notes.id}`);
+    navigate('/');
+  };
 
   return (
     <Container>

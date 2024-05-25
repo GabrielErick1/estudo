@@ -15,7 +15,6 @@ const CadastreNotas = () => {
   const [newLink, setNewLink] = useState('');
   const [tag, setTag] = useState([]);
   const [newTag, setNewTag] = useState('');
-  console.log(tag);
   const handleAddLink = () => {
     if (newLink) {
       setLink((link) => [...link, newLink]);

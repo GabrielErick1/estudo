@@ -38,32 +38,42 @@ export const Home = () => {
   useEffect(() => {
     const valueTags = tagsSelectd.join(', ');
     const handleSearch = async () => {
-      const response = await api.get('/shownotes', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        params: {
-          title: search,
-          tags: valueTags,
-        },
-      });
-      setNotes(response.data.notesWhite);
+      try {
+        const response = await api.get('/shownotes', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          params: {
+            title: search,
+            tags: valueTags,
+          },
+        });
+        setNotes(response.data.notesWhite);
+      } catch (err) {
+        return;
+      }
     };
     handleSearch();
   }, [tagsSelectd, search]);
 
   useEffect(() => {
     const GetNotes = async () => {
-      const response = await api.get('/tags', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      setTags(response.data);
-    };
+      try {
+        const response = await api.get('/tags', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
-    GetNotes();
-  }, []);
+        setTags(response.data);
+      } catch (err) {
+        return;
+      }
+    };
+    if (notes.length) {
+      GetNotes();
+    }
+  }, [notes.length]);
 
   const handleDetail = async (id) => {
     navigate(`/details/${id}`);
