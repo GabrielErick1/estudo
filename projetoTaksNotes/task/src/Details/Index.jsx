@@ -13,7 +13,7 @@ export const Details = () => {
   const [notes, setNotes] = useState([]);
   const navigate = useNavigate();
   function HandlkeClick() {
-    navigate('/');
+    navigate(-1);
   }
   useEffect(() => {
     const fetchNotes = async () => {
@@ -24,7 +24,7 @@ export const Details = () => {
   }, [id]);
   const deleteNotes = async () => {
     const response = await api.delete(`/deletenotes/${notes.id}`);
-    navigate('/');
+    navigate(-1);
   };
 
   return (

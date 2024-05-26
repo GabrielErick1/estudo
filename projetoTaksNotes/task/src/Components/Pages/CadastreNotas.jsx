@@ -5,10 +5,11 @@ import TextArea from '../Buttons/TextArea.jsx';
 import Buttons from '../Buttons/Buttons.jsx';
 import TextareaItem from '../Buttons/TextareItem.jsx';
 import { Section } from '../Section/Section.jsx';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { api } from '../../services/api.js';
 const CadastreNotas = () => {
+  const navigate = useNavigate();
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [link, setLink] = useState([]);
@@ -52,6 +53,7 @@ const CadastreNotas = () => {
         return;
       }
       alert(response.data.message);
+      navigate(-1);
     } catch (err) {
       alert(err.message);
     } finally {
