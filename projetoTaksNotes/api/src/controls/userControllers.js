@@ -23,7 +23,7 @@ class useControlers {
       );
       return res.status(201).json({ message: 'Login cadastrado com sucesso' });
     } catch (err) {
-      res.status(err.statusCode).json({ message: err.message });
+      res.status(400).json({ message: err.message });
     }
   }
   async update(req, res) {
