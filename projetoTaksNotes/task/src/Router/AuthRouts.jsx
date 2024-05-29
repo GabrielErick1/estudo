@@ -5,9 +5,10 @@ import Synap from '../Components/Pages/SyngUp.jsx';
 import { FetchUser } from '../services/PostUser.jsx';
 
 export const AuthRouts = () => {
+  const user = localStorage.getItem('@harvelnotes:user');
   return (
     <Routes>
-      <Route path="/login" element={<Login />} />
+      <Route path="/" element={<Login />} />
       <Route
         path="/cadastro"
         element={
@@ -16,7 +17,7 @@ export const AuthRouts = () => {
           </FetchUser>
         }
       />
-      <Route path="*" element={<Navigate to="/login" replace />} />
+      {!user && <Route path="*" element={<Navigate to="/" replace />} />}
     </Routes>
   );
 };

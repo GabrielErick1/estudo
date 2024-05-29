@@ -1,5 +1,6 @@
 'express-async-error';
 import migration from './database/sqlite/migrations/index.js';
+import 'dotenv/config';
 import { appErr } from './ultils/appError.js';
 import express from 'express';
 import cors from 'cors';
@@ -24,6 +25,5 @@ app.use((error, req, res, next) => {
     message: 'internal server error',
   });
 });
-
-const port = 3000;
+const port = process.env.PORT || 3000;
 app.listen(port, () => console.log('Servidor rodando na porta: ' + port));

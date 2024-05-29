@@ -13,6 +13,9 @@ export const Container = styled.div`
     scrollbar-width: thin;
     scrollbar-color: rgba(155, 155, 155, 0.5) transparent;
   }
+  > section {
+    word-break: break-word;
+  }
 `;
 
 export const Links = styled.ul`

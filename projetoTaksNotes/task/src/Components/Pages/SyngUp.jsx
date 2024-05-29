@@ -75,7 +75,7 @@ const Synap = () => {
           icon={FiLock}
         />
         <Buttons onClick={handleSubmit} icons={FiLogIn} title="Cadastrar" />
-        <Link to="/login">Volte Para Login</Link>
+        <Link to="/">Volte Para Login</Link>
       </Form>
     </Conteiner>
   );

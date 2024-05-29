@@ -11,11 +11,10 @@ class noteControlles {
         description,
         id_usuario,
       });
-      let note_id = id_notes;
 
       const linksInsert = links.map((link) => {
         return {
-          note_id,
+          id_notes,
           url: link,
         };
       });
@@ -46,8 +45,8 @@ class noteControlles {
         .orderBy('name');
 
       const links = await knex('links')
-        .where({ note_id: notes.id })
-        .orderBy('create_at');
+        .where({ id_notes: notes.id })
+        .orderBy('created_at');
       if (!notes) {
         throw new appErr('este usuario ainda nao cadastrou uma nota');
       }
@@ -60,14 +59,13 @@ class noteControlles {
   async deleteNotes(req, res) {
     try {
       const { id } = req.params;
-      const notesDeletada = await knex('notes').where({id}).delete();
-      console.log(notesDeletada);
+      const notesDeletada = await knex('notes').where({ id }).delete();
+
       if (notesDeletada === 0) {
         throw new appErr('Nota não encontrada');
       }
-      res.json({message: "nota excluida com sucesso"});
+      res.json({ message: 'nota excluida com sucesso' });
     } catch (err) {
-      console.log(err.message);
       res.status(400).json({ erro: err.message });
     }
   }

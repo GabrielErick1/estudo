@@ -30,13 +30,14 @@ const Profile = () => {
   };
 
   const handleUpdate = async () => {
-    const user = {
+    const dados = {
       email,
       name,
       password,
       word_password,
     };
-    await updateUser({ user, avatarFile });
+    const dados2 = Object.assign(user, dados);
+    await updateUser({ user: dados2, avatarFile });
   };
 
   return (

@@ -13,7 +13,7 @@ export const Details = () => {
   const [notes, setNotes] = useState([]);
   const navigate = useNavigate();
   function HandlkeClick() {
-    navigate('/');
+    navigate(-1);
   }
   useEffect(() => {
     const fetchNotes = async () => {
@@ -23,10 +23,9 @@ export const Details = () => {
     fetchNotes();
   }, [id]);
   const deleteNotes = async () => {
-    const response = await api.delete(`/deletenotes/${notes.id}`)
-    console.log(response);
-   
-  }
+    const response = await api.delete(`/deletenotes/${notes.id}`);
+    navigate(-1);
+  };
 
   return (
     <Container>
@@ -34,9 +33,10 @@ export const Details = () => {
       <main>
         <Content>
           <ButtonText onClick={deleteNotes} title="excluir Notas" />
-
-          <h1>{notes.title}</h1>
-          <p>{notes.description}</p>
+          <section>
+            <h1>{notes.title}</h1>
+            <p>{notes.description}</p>
+          </section>
 
           <Section title="Links Ulteis">
             {notes.links?.map((link) => (

@@ -26,16 +26,11 @@ const Auth = ({ children }) => {
         const fileForm = new FormData();
         fileForm.append('avatar', avatarFile);
         const response = await api.patch('/avatar', fileForm);
-        localStorage.setItem('@harvelnotes:avatar', response.data.user.avatar);
         user.avatar = response.data.user.avatar;
       }
-      const avataruser = localStorage.getItem('@harvelnotes:avatar');
-      const dados = {
-        ...user,
-        avatar: avataruser,
-      };
+
       await api.put('/updateusers', user);
-      localStorage.setItem('@harvelnotes:user', JSON.stringify(dados));
+      localStorage.setItem('@harvelnotes:user', JSON.stringify(user));
       setData({ user, token: data.token });
       alert('seus dados foi aterados');
     } catch (err) {

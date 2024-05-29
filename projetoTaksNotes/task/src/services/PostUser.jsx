@@ -16,7 +16,7 @@ export const FetchUser = ({ children }) => {
         return;
       }
       alert(response.data.message);
-      navigate('/login');
+      navigate(-1);
     } catch (err) {
       alert(err.response.data.message);
     }
