@@ -10,7 +10,7 @@
 <br>
 
 <li id="li">
-<a id="a" href="https://GabrielErick1.github.io/estudo/calculadora/">calculadora</a>
+<a id="a" href="https://GabrielErick1.github.io/estudo/calculadora/">Calculadora</a>
 </li>
 
 <br>
@@ -34,7 +34,7 @@
 <br>
 
 <li id="li">
-<a id="a" href="https://GabrielErick1.github.io/estudo/projetogit01/">Guithub Favoritos</a>
+<a id="a" href="https://GabrielErick1.github.io/estudo/projetogit01/">GuitHub Favoritos</a>
 </li>
 
 <br>
@@ -61,7 +61,7 @@
 <h1 id="h1" >Back-End</h1>
 <br>
 <li id="li">
-<a id="a" href="https://github.com/GabrielErick1/estudo/tree/main/taskUser">taskUser </a>
+<a id="a" href="https://github.com/GabrielErick1/estudo/tree/main/taskUser">Task User </a>
 </li>
 </ul>
 </nav>
