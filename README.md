@@ -1,5 +1,5 @@
 <br>
-<h1 id="h1" >Desenvolvimento e Projetos</h1>
+<h1 id="h1" style="color: #3b46e6" >Desenvolvimento e Projetos</h1>
 
 <br>
 
