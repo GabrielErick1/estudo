@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.App = void 0;
 require("express-async-errors");
 const express_1 = __importDefault(require("express"));
-const userRouter_1 = require("../routes/userRouter");
+const routes_1 = require("../routes");
 const cors_1 = __importDefault(require("cors"));
 const morgan_1 = __importDefault(require("morgan"));
 const helmet_1 = __importDefault(require("helmet"));
@@ -25,7 +25,7 @@ class App {
         this.server.use(express_1.default.json());
     }
     router() {
-        this.server.use(userRouter_1.userRouter);
+        this.server.use(routes_1.router);
     }
 }
 exports.App = App;

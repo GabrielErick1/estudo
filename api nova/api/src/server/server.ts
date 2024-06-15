@@ -1,6 +1,6 @@
 import 'express-async-errors';
 import express from 'express';
-import { router } from '../routes';
+import { userRouter } from '../routes/userRouter';
 import cors from 'cors';
 import morgan from 'morgan';
 import helmet from 'helmet';
@@ -29,6 +29,6 @@ export class App{
     }
   
     private router(){
-      this.server.use(router);
+      this.server.use(userRouter);
     }
   }

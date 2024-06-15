@@ -1,25 +1,92 @@
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
   provider = "postgresql"
-  url      = env("postgresql://admin:admin@localhost:5432/database")
-}
-
-model User {
-  id        Int      @id @default(autoincrement())
-  name      String
-  email     String   @unique
-  password  String
-  role      UserRole @default(USER)
-  createdAt DateTime @default(now())
+  url      = env("DATABASE_URL")
 }
 
 
+// Enum para definir os diferentes papéis de usuário
 enum UserRole {
   ADMIN
+  OWNER
   USER
   ADVERTISER
+}
+
+// Modelo para representar um usuário
+model User {
+  id        Int        @id @default(autoincrement()) 
+  name      String     // Nome do usuário
+  email     String     @unique // Email do usuário, único
+  password  String     // Senha do usuário
+  role      UserRole   @default(USER) // Papel do usuário (padrão: USER)
+
+  // Relacionamentos do usuário
+  addresses Address[]   // Lista de endereços do usuário
+  schedules Schedule[] // Lista de agendas do usuário
+  salons    Salon[]    @relation("OwnerSalons") // Lista de salões de propriedade do usuário
+  services  Service[]  @relation("UserServices") // Lista de serviços do usuário
+}
+
+// Modelo para representar um endereço
+model Address {
+  id         Int      @id @default(autoincrement()) 
+  street     String   // Nome da rua
+  number     String   // Número do endereço
+  city       String   // Cidade
+  state      String   // Estado
+  postalCode String   // Código postal
+  country    String   // País talvez  ficara
+  cnpj       String?  @unique // CNPJ do endereço, único (Cadastro Nacional da Pessoa Jurídica)
+  cpf        String?  // CPF do endereço, único (Cadastro de Pessoas Físicas)
+  userId     Int      // ID do usuário associado a este endereço
+
+  // Relacionamentos do endereço
+  user       User     @relation(fields: [userId], references: [id]) // Usuário associado a este endereço
+  salon      Salon?   // Salão associado a este endereço (opcional)
+}
+
+// Modelo para representar um salão
+model Salon {
+  id        Int       @id @default(autoincrement())
+  name      String    // Nome do salão
+  addressId Int       @unique // ID do endereço do salão, único
+
+  // Relacionamentos do salão
+  address   Address   @relation(fields: [addressId], references: [id]) // Endereço do salão
+  ownerId   Int       // ID do proprietário do salão
+  owner     User      @relation(fields: [ownerId], references: [id], name: "OwnerSalons") // Usuário proprietário do salão
+  services  Service[] // Lista de serviços oferecidos pelo salão
+}
+
+// Modelo para representar um serviço oferecido por um salão
+model Service {
+  id          Int       @id @default(autoincrement()) 
+  name        String    // Nome do serviço
+  description String    // Descrição do serviço
+  price       Float     // Preço do serviço
+  duration    Int       // Duração do serviço em minutos
+  salonId     Int       // ID do salão associado ao serviço
+
+  // Relacionamentos do serviço
+  salon       Salon     @relation(fields: [salonId], references: [id]) 
+  schedules   Schedule[] // Lista de agendas para este serviço
+  userId      Int       // ID do usuário associado a este serviço
+  user        User      @relation(fields: [userId], references: [id], name: "UserServices") // Usuário associado a este serviço
+}
+
+// Modelo para representar uma agenda de serviço
+model Schedule {
+  id          Int       @id @default(autoincrement()) 
+  date        DateTime  // Data e hora da agenda
+  serviceId   Int       // ID do serviço agendado
+
+  // Relacionamentos da agenda
+  service     Service   @relation(fields: [serviceId], references: [id]) // Serviço associado à agenda
+  userId      Int?      // ID do usuário associado à agenda (opcional)
+  user        User?     @relation(fields: [userId], references: [id]) // Usuário associado à agenda (opcional)
+  available   Boolean   @default(true) // Indica se a agenda está disponível (true) ou não (false)
 }
