@@ -34,7 +34,7 @@ export class database {
         if(rowIndex > -1){
             this.#database[table][rowIndex] = {...this.#database[table][rowIndex],...data}
             this.#persista()
-            return
+            return;
         }
         return this.#database[table][rowIndex]
     }
