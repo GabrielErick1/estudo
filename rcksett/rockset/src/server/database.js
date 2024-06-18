@@ -37,4 +37,20 @@ export class database {
          this.#persista()
        }
     }
+
+    update(tabela, id, dados) {
+        const rowIndex = this.#database[tabela].findIndex(row => row.id === id);
+        if (rowIndex > -1) {
+            // Encontrou o índice do objeto que corresponde ao ID fornecido
+            // Copia o objeto encontrado para atualizar seus dados
+            const updatedRow = { ...this.#database[tabela][rowIndex], ...dados };
+            
+            // Atualiza o objeto no array original
+            this.#database[tabela][rowIndex] = updatedRow;
+    
+            // Chama o método de persistência após a atualização
+            this.#persista();
+        }
+    }
+    
 }

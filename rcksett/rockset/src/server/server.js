@@ -5,7 +5,7 @@ import { router } from "./router.js";
 const server = http.createServer( async (req, res) => {
     const {method, url} = req
     await jsonMidler(req, res)
-  
+  console.log(method);
    const routers = router.find(routerd => {
      console.log(routerd.path);
     return routerd.method === method && routerd.path.test(url)

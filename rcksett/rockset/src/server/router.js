@@ -14,6 +14,21 @@ export const router = [
     }
    },
    {
+    method: "PUT",
+    path: routPath("/usres/:id"),
+    handler: (req, res) => {
+        const {id} = req.params;
+        const {name, password, email } = req.body;
+        const data = {
+            name,
+            email,
+            password,
+        }
+        databases.update('users', id, data)
+        return res.writeHead(200).end()
+    }
+   },
+   {
     method: "GET",
     path: routPath("/usres"),
     handler: (req, res) => {
