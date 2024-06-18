@@ -1,0 +1,12 @@
+{
+  "name": "rockset",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node --watch ./src/server/server.js"
+  },
+  "author": "",
+  "license": "ISC"
+}

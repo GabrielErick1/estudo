@@ -18,14 +18,24 @@ export const router = [
     path: routPath("/usres/:id"),
     handler: (req, res) => {
         const {id} = req.params;
+<<<<<<< HEAD:rcksett/rockset/src/server/router.js
         const {name, password, email } = req.body;
         const data = {
+=======
+        const {name, password, email} = req.body;
+        const dados = {
+>>>>>>> d80b8e144650729481b3b7fa7dd612ef0f93fd2c:rockset/src/server/router.js
             name,
             email,
             password,
         }
+<<<<<<< HEAD:rcksett/rockset/src/server/router.js
         databases.update('users', id, data)
         return res.writeHead(200).end()
+=======
+        databases.update('users', id, dados)
+        return res.writeHead(204).end()
+>>>>>>> d80b8e144650729481b3b7fa7dd612ef0f93fd2c:rockset/src/server/router.js
     }
    },
    {

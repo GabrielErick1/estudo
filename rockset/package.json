@@ -1,0 +1,20 @@
+{
+  "name": "rockset",
+  "version": "1.0.0",
+  "type": "module",
+<<<<<<< HEAD:rcksett/rockset/package.json
+=======
+  "description": "",
+>>>>>>> d80b8e144650729481b3b7fa7dd612ef0f93fd2c:rockset/package.json
+  "main": "index.js",
+  "scripts": {
+    "start": "node --watch src/server/server.js"
+  },
+  "author": "",
+<<<<<<< HEAD:rcksett/rockset/package.json
+  "license": "ISC",
+  "description": ""
+=======
+  "license": "ISC"
+>>>>>>> d80b8e144650729481b3b7fa7dd612ef0f93fd2c:rockset/package.json
+}
