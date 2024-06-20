@@ -1,5 +1,5 @@
 import { Knex, knex as setupKnex } from 'knex'
-
+import path from 'path';
 export const config: Knex.Config = {
   client: 'sqlite',
   connection: {
@@ -8,7 +8,7 @@ export const config: Knex.Config = {
   useNullAsDefault: true,
   migrations: {
     extension: 'ts',
-    directory: './db/migrations',
+    directory: path.resolve(__dirname, '../', 'db', 'migrations')
   },
 }
 
