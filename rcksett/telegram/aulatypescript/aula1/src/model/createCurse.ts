@@ -1,4 +1,4 @@
-interface curse {
+export interface curse {
   name: string;
   description: string;
   duration?: number;

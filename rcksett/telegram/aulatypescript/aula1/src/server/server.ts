@@ -1,21 +1,20 @@
 import express from "express";
-
+import {v4} from 'uuid'
+import {curse} from "../model/createCurse"
 const app = express();
 
-// Middleware to parse JSON bodies
+
 app.use(express.json());
 
-// Route handler for POST request to '/curse'
-app.post('/curse', (req, res) => {
-  const { name, description, education, duration } = req.body; 
-  console.log('Received data:', req.body);
 
-  return res.json({
-    name,
-    description,
-    education,
-    duration
-  });
+const categories:curse[] = [];
+
+app.post('/curse', (req, res) => {
+
+});
+
+app.get('/curse', (req, res) => {
+  return res.json({categories});
 });
 
 
