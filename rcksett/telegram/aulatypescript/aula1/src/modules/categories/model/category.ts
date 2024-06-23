@@ -2,9 +2,9 @@ import { v4 as uuidv4 } from 'uuid';
 
 class Category {
   id?: string;
-  name: string;
-  description: string;
-  createdAt: Date;
+  name: string | undefined;
+  description: string | undefined;
+  createdAt: Date | undefined;
 
   constructor() {
     if(!this.id){

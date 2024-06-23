@@ -1,19 +1,20 @@
-import { Request, Response, Application } from "express";
-import { Category } from "../model/category";
+import { Router, Request, Response } from "express";
+import {CategoryController} from "../modules/categories/useCases/createCategory/categoryControllers"
+import { Especifications } from "../modules/categories/repositories/Especifications";
+import { createEspecificationsService } from "../modules/categories/services/createEspecificationsService"
 
-class CreateRoutes {
-  createCurse( req: Request, res: Response): Response {
-    const { name, description } = req.body;
-    const createdAt = new Date();
+const categoryCreate = new  CategoryController()
+const route = Router();
+const EspecifficationRepos = new Especifications()
+route.post("/curse", categoryCreate.createCategory);
 
-    const newCategory: Category = new Category();
-      Object.assign(newCategory, {
-        name,
-        description
-      })
+route.post("/especi", (req: Request, res: Response) => {
+  const { name, description } = req.body;
+  const EspecificationsService = new createEspecificationsService(EspecifficationRepos);
+  EspecificationsService.execulte({name, description})
+  return res.status(201).send();
+});
 
-    return res.json(newCategory);
-  }
-}
+route.get("/curse", categoryCreate.viewCategory);
 
-export default new CreateRoutes();
+export default route;
