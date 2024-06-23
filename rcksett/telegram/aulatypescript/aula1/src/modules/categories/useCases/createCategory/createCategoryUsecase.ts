@@ -1,4 +1,4 @@
-import { RepositoryInverse } from "../repositories/InverseDependecyRepository";
+import { RepositoryInverse } from "../../repositories/InverseDependecyRepository";
 
 
 interface CategoriesService {
@@ -6,7 +6,7 @@ interface CategoriesService {
   description: string;
 }
 
-class createCategoryService {
+class createCategoryUseCase {
   private categoriesRepo: RepositoryInverse;
 
   constructor(RepositoryInverse: RepositoryInverse){
@@ -23,4 +23,4 @@ class createCategoryService {
   }
 }
 
-export { createCategoryService }
+export { createCategoryUseCase }

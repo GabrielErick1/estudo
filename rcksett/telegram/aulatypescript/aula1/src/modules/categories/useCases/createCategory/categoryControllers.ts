@@ -1,28 +1,24 @@
-import { Router, Request, Response } from "express";
-import { createCategoryService } from "../../services/createCategorySservice"; 
-import { categoriesRepositories } from "../../repositories/categories"; 
-
-
-const categoriesRepo = new categoriesRepositories();
+import { Request, Response } from "express";
+import { createCategoryUseCase } from "./createCategoryUsecase";
+import { categoriesRepositories } from "../../repositories/categories";
 
 export class CategoryController {
-    private createCategoryService: createCategoryService;
+    private createCategoryService: createCategoryUseCase;
+    private categoriesRepo: categoriesRepositories;
 
-    constructor() {
-        this.createCategoryService = new createCategoryService(categoriesRepo);
-        this.createCategory = this.createCategory.bind(this);
-        this.viewCategory = this.viewCategory.bind(this);
+    constructor(createCategoryService: createCategoryUseCase) {
+        this.createCategoryService = createCategoryService;
+        this.categoriesRepo = new categoriesRepositories();
     }
+
     createCategory(req: Request, res: Response): Response {
         const { name, description } = req.body;
-            this.createCategoryService.execute({ name, description });
-            return res.status(201).send();
-       
+        this.createCategoryService.execute({ name, description });
+        return res.status(201).send();
     }
 
     viewCategory(req: Request, res: Response): Response {
-        const viewCategory = categoriesRepo.ViweCategory(); 
+        const viewCategory = this.categoriesRepo.ViweCategory(); 
         return res.json(viewCategory);
     }
 }
-
