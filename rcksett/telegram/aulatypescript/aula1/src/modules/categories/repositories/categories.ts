@@ -27,6 +27,8 @@ class categoriesRepositories implements RepositoryInverse {
   }
 
   ViweCategory(): Category[] {
+    console.log(this.categories);
+    
     return this.categories;
   }
 }
