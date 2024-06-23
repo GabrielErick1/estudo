@@ -1,7 +1,10 @@
+// index.ts
 import { CategoryController } from "./categoryControllers";
-import { categoriesRepositories } from "../../repositories/categories";
+import { createCategoryUseCase } from "./createCategoryUsecase"; // Importe a classe correta do use case
+import { categoriesRepositories } from "../../repositories/categories"; // Importe a classe correta do repositório
 
-const Categories = new categoriesRepositories();
-const categoryCreate = new CategoryController(Categories);
 
-export { categoryCreate };
+const categoriesRepo = new categoriesRepositories();
+const createCategoryService = new createCategoryUseCase(categoriesRepo);
+
+export { createCategoryService };

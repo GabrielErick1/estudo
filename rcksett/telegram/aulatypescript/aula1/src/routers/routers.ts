@@ -1,8 +1,9 @@
 import { Router, Request, Response } from "express";
-import {categoryCreate} from "../modules/categories/useCases/createCategory/index"
+import {CategoryController} from "../modules/categories/useCases/createCategory/categoryControllers"
 import { Especifications } from "../modules/categories/repositories/Especifications";
 import { createEspecificationsService } from "../modules/categories/services/createEspecificationsService"
 
+const categoryCreate = new  CategoryController()
 const route = Router();
 const EspecifficationRepos = new Especifications()
 route.post("/curse", categoryCreate.createCategory);
