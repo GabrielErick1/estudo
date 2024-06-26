@@ -1,4 +1,4 @@
-import {Especifications} from "../repositories/Especifications"
+import {Especifications} from "../../repositories/implement/Especifications"
 interface Especification {
   name: string;
   description: string;

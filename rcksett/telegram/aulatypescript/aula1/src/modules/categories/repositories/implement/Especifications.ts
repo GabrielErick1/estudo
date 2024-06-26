@@ -1,5 +1,5 @@
-import { Especifications as ModelEspecifications } from "../model/Especifications";
-import { CreatEspecificationsDTO, inverseDependecyEspecifications } from "./inverseDependecyEspecifications";
+import { Especifications as ModelEspecifications } from "../../model/Especifications";
+import { CreatEspecificationsDTO, inverseDependecyEspecifications } from "./../inverseDependecyEspecifications";
 
 export class Especifications implements inverseDependecyEspecifications {
    private dataEspecificatios: ModelEspecifications[];

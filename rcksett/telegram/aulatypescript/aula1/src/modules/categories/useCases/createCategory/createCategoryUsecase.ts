@@ -1,4 +1,4 @@
-import { RepositoryInverse } from "../../repositories/InverseDependecyRepository";
+import { RepositoryInverse } from "../../repositories/InverseDependencyRepository";
 
 
 interface CategoriesService {
@@ -13,7 +13,6 @@ class createCategoryUseCase {
     this.categoriesRepo = RepositoryInverse;
   }
   execute({ name, description }: CategoriesService): void{
-    console.log("ola", name, description);
     
     const verifyCategory = this.categoriesRepo.findByName(name)
     if(verifyCategory){
