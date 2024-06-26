@@ -1,0 +1,1 @@
+pasta: useCase sao as regras de negocio da nossa aplicaçao

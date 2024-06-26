@@ -1,18 +1,23 @@
-import { Category } from "../model/category";
-import { CreatCategoryDTO, RepositoryInverse } from "./InverseDependecyRepository";
+import { Category } from "../../model/category";
+import { CreatCategoryDTO, RepositoryInverse } from "../InverseDependencyRepository";
 
 class categoriesRepositories implements RepositoryInverse {
   private categories: Category[];
+  private static INSTANCE: categoriesRepositories;
 
-  constructor() {
+  private constructor() {
     this.categories = [];
   }
-
   findByName(name: string): Category { 
     const findCategory = this.categories.find(category => category.name === name);
-    if (findCategory) {
-       return findCategory;
+      return findCategory;
+  }
+
+  public static getInstance(): categoriesRepositories {
+    if (!categoriesRepositories.INSTANCE) {
+      categoriesRepositories.INSTANCE = new categoriesRepositories();
     }
+    return categoriesRepositories.INSTANCE;
   }
 
   Create({ name, description }: CreatCategoryDTO): void {
@@ -28,7 +33,6 @@ class categoriesRepositories implements RepositoryInverse {
 
   ViweCategory(): Category[] {
     console.log(this.categories);
-    
     return this.categories;
   }
 }

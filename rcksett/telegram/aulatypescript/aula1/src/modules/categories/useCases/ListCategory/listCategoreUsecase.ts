@@ -1,5 +1,5 @@
 import { Category } from "../../model/category";
-import { RepositoryInverse } from "../../repositories/InverseDependecyRepository";
+import { RepositoryInverse } from "../../repositories/InverseDependencyRepository";
 
 
 class ListCategoryUseCase {
