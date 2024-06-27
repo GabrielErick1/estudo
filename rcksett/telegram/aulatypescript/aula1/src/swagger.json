@@ -1,0 +1,89 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Exemplo de Título",
+    "description": "Aqui estão os contatos",
+    "contact": {
+      "name": "API Support",
+      "url": "http://www.example.com/support",
+      "email": "support@example.com",
+      "phone": "+5565999340588",
+      "x-whatsapp": "+5565999340588"
+    },
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/curse": {
+      "post": {
+        "tags": ["category"],
+        "summary": "Criar curso",
+        "description": "Cria um curso específico",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "node"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "node é bom demais"
+                  }
+                },
+                "required": ["name", "description"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Detalhes do curso criado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "500":{
+                    "description": "servidor caiu"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": ["category"],
+        "summary": "Obter curso",
+        "description": "Retorna os detalhes de um curso específico",
+        "responses": {
+          "200": {
+            "description": "Detalhes do curso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      }
+                    },
+                    "required": ["name", "description"]
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
