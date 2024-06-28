@@ -1,9 +1,9 @@
 import { Router, Request, Response } from "express";
-import { categoryRoutes } from "../modules/categories/useCases/createCategory/index";
-import { ListcategoryRoutes } from "../modules/categories/useCases/ListCategory/index";
-import { EspecificationsController } from "../modules/categories/useCases/createEspecificacoes/index";
+import { categoryRoutes } from "../modules/cars/useCases/createCategory/index";
+import { ListcategoryRoutes } from "../modules/cars/useCases/ListCategory/index";
+import { EspecificationsController } from "../modules/cars/useCases/createEspecificacoes/index";
 import multer from "multer";
-import { fileCategoryHandle } from "../modules/categories/useCases/fileCategory";
+import { fileCategoryHandle } from "../modules/cars/useCases/fileCategory";
 const upload = multer({
   dest: "./tmp"
 });
