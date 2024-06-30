@@ -1,10 +1,49 @@
 version: '3.7'
 
 services:
+  db:
+    image: postgres:14.1-alpine
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234567
+      POSTGRES_DB: harvel
+    ports:
+      - '5432:5432'
+    volumes: 
+      - db:/data/postgres
+    networks:
+      - app-network
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: api-pgadmin-1
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: bieelerick9876@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: 1234567
+    ports:
+      - '16543:80'
+    depends_on:
+      - db
+    networks:
+      - app-network
+
   app:
     build: .
     container_name: rentx
     ports: 
-      - 3333:3333
+      - '3333:3333'
     volumes:
       - .:/usr/app
+    networks:
+      - app-network
+
+volumes:
+  db:
+    driver: local
+
+networks:
+  app-network:
+    driver: bridge

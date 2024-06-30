@@ -5,6 +5,8 @@ ver conternes: docker ps
 para remover precisa  esta com docker parado remover:  docker  rm  id da rm aqui
 para iniciar um conteiner : docker start
 para parar : docker stop
-para rodar sem aparcer no cmd: docker-compose up -D
+para rodar sem aparcer no cmd: docker-compose up -d
 remover tudo : docker-compose down
 para acessar uma maquina: docker exec -it aqui o id do conteiner ou nome /bin/bash
+ver ip: docker exec postgres_db cat /etc/hosts
+craindo migrations no orm: npx typeorm migration:create src/database/migrations/CreateCategories
