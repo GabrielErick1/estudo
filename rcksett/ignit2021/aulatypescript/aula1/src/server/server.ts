@@ -3,12 +3,19 @@ import rotas from  "../routers/routers"
 import swaggerUi from "swagger-ui-express"
 import swaggerFile from "../swagger.json"
 import 'dotenv/config';
-import "../database/conecxao"
-const app = express();
-app.use(express.json());
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile))
-app.use(rotas );
+import "../database/data_source"
 
-app.listen(3333, () => {
-  console.log("Servidor rodando na porta 3333");
-});
+
+
+
+const app = express();
+    app.use(express.json());
+    app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerFile))
+    app.use(rotas );
+
+    app.listen(3333, () => {
+        console.log("Servidor rodando na porta 3333");   
+    })         
+
+ 
+

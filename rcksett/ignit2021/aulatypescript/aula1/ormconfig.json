@@ -1,7 +1,13 @@
 {
+  "type": "postgres",
+  "port": 5432,
+  "host": "localhost",
+  "username": "postgres",
+  "password": "1234567",
+  "database": "harvel", 
+  "migrations": ["./src/database/migrations/*.ts"],
+  "entities": ["./src/modules/**/entities/*.ts"],
   "cli": {
-    "entitiesDir": "src/entity",
-    "migrationsDir": "src/database/migrations",
-    "subscribersDir": "src/subscriber"
+    "migrationsDir": "./src/database/migrations"
   }
 }

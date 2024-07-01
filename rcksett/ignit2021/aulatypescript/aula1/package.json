@@ -6,8 +6,8 @@
   "scripts": {
     "build": "npx tsc",
     "typeorm": "ts-node-dev ./node_modules/typeorm/cli",
-    "migration:create": "npm run typeorm -- migration:create src/database/migrations/",
-    "migration:generate": "ts-node-dev ./node_modules/typeorm/cli migration:generate -d ./src/database/conecxao.ts",
+    "migration:run": "typeorm-ts-node-commonjs -d ./src/data_source.ts migration:run",
+    "migration:generate": "typeorm-ts-node-commonjs -d ./src/data_source.ts migration:generate ./src/database/entites/default",
     "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node-modules --respawn src/server/server.ts"
   },
   "keywords": [],
@@ -35,6 +35,6 @@
     "pg": "^8.12.0",
     "reflect-metadata": "^0.2.2",
     "swagger-ui-express": "^5.0.1",
-    "typeorm": "^0.3.20"
+    "typeorm": "^0.2.41"
   }
 }
