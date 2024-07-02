@@ -6,7 +6,7 @@
   "scripts": {
     "build": "npx tsc",
     "typeorm": "ts-node-dev ./node_modules/typeorm/cli",
-    "migration:run": "typeorm-ts-node-commonjs -d ./src/data_source.ts migration:run",
+    "migration:run": "ts-node ./node_modules/typeorm/cli.js migration:run",
     "migration:generate": "typeorm-ts-node-commonjs -d ./src/data_source.ts migration:generate ./src/database/entites/default",
     "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node-modules --respawn src/server/server.ts"
   },
