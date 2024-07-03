@@ -1,12 +1,7 @@
-import React, { useState } from "react";
-import { Editor } from "primereact/editor"; // Verifique se o caminho está correto
+import { Container } from './textarea.js';
 
-export default function BasicDemo() {
-  const [text, setText] = useState('');
+const TextArea = ({ value, ...rest }) => {
+  return <Container {...rest}>{value}</Container>;
+};
 
-  return (
-    <div className="card">
-      <Editor value={text} onTextChange={(e) => setText(e.htmlValue)} style={{ height: '320px' }} />
-    </div>
-  );
-}
+export default TextArea;
