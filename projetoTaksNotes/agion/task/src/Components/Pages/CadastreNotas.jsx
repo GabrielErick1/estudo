@@ -44,10 +44,11 @@ const CadastreNotas = () => {
     try {
       const responseNotes = {
         title,
-        description, // Converter para string aqui : description.toString()
+        description: description.toString(), // Converter para string aqui : description.toString()
         links: link,
         tags: tag,
       };
+      console.log(responseNotes);
       const response = await api.post('/notes', responseNotes);
       if (response.status !== 201) {
         return;

@@ -16,4 +16,8 @@ export const Container = styled.div`
   &::placeholder {
     color: ${({ theme }) => theme.Colors.GRAY_300};
   }
+  img {
+  max-width: 200px;
+  height: 200px;
+}
 `;

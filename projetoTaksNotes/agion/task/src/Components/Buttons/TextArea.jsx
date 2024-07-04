@@ -35,7 +35,6 @@ function TextArea({ onChange, value, ...rest }) {
           width: '100%',
           marginBottom: '8px',
           border: 'none', // Remove a borda
-          
           boxShadow: 'none', // Remove a sombra, se houver
           padding: 0 // Remove o padding, se necessário
         }}

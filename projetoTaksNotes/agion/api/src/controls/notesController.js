@@ -5,6 +5,7 @@ class noteControlles {
   async createNotes(req, res) {
     try {
       const { title, description, tags, links } = req.body;
+      console.log(description);
       const id_usuario = req.user.id;
       const [id_notes] = await knex('notes').insert({
         title,
