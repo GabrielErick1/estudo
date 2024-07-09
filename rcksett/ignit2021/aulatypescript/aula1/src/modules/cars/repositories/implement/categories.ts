@@ -1,39 +1,30 @@
-import { Category } from "../../model/category";
+import { Category } from "../../entites/category";
 import { CreatCategoryDTO, RepositoryInverse } from "../InverseDependencyRepository";
-
+import {Repository} from "typeorm"
+import { AppDataSource } from "../../../../database/data_source";
 class categoriesRepositories implements RepositoryInverse {
-  private categories: Category[];
-  private static INSTANCE: categoriesRepositories;
+  private Repository: Repository<Category>
 
-  private constructor() {
-    this.categories = [];
-  }
-  findByName(name: string): Category { 
-    const findCategory = this.categories.find(category => category.name === name);
-      return findCategory;
+
+   constructor() {
+    this.Repository = AppDataSource.getRepository(Category);
   }
 
-  public static getInstance(): categoriesRepositories {
-    if (!categoriesRepositories.INSTANCE) {
-      categoriesRepositories.INSTANCE = new categoriesRepositories();
-    }
-    return categoriesRepositories.INSTANCE;
+
+
+
+  async findByName(name: string): Promise<Category> { 
+    const findCategory = await this.Repository.findOne({ where: { name } });
+    return findCategory;
+  }
+  async Create({ name, description }: CreatCategoryDTO): Promise<void> {
+    const newCategory = this.Repository.create({name, description});
+    await this.Repository.save(newCategory);
   }
 
-  Create({ name, description }: CreatCategoryDTO): void {
-    const newCategory: Category = new Category();
-    Object.assign(newCategory, {
-      name,
-      description
-    });
-
-    this.categories.push(newCategory);
-    console.log(this.categories);
-  }
-
-  ViweCategory(): Category[] {
-    console.log(this.categories);
-    return this.categories;
+  async ViweCategory(): Promise<Category[]> {
+    const CategorisView = await this.Repository.find();
+    return CategorisView;
   }
 }
 

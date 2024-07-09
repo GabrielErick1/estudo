@@ -1,20 +1,20 @@
 import { RepositoryInverse } from "../../repositories/InverseDependencyRepository";
-
+import {inject, injectable} from "tsyringe"
 
 interface CategoriesService {
   name: string;
   description: string;
 }
-
+@injectable()
 class createCategoryUseCase {
-  private categoriesRepo: RepositoryInverse;
 
-  constructor(RepositoryInverse: RepositoryInverse){
-    this.categoriesRepo = RepositoryInverse;
-  }
-  execute({ name, description }: CategoriesService): void{
+
+  constructor(
+    @inject("categoriesRepositories")
+    private categoriesRepo: RepositoryInverse){}
+  async execute({ name, description }: CategoriesService): Promise<void>{
     
-    const verifyCategory = this.categoriesRepo.findByName(name)
+    const verifyCategory = await this.categoriesRepo.findByName(name)
     if(verifyCategory){
       throw new Error("ja exixte esse nome")
     }

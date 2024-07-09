@@ -1,18 +1,19 @@
 import {Especifications} from "../../repositories/implement/Especifications"
+import {inject, injectable} from "tsyringe"
 interface Especification {
   name: string;
   description: string;
 }
-
+@injectable()
 class createEspecificationsService {
-   private especificationsService: Especifications;
-  constructor(Especifications: Especifications){
-    this.especificationsService = Especifications;
-  }
-  execulte({name, description}: Especification ) {
-    const verifyEspecifications = this.especificationsService.FindByName(name)
-    if(verifyEspecifications){
-      throw new Error("ja exixte esse nome")
+   
+  constructor(
+    @inject("Especifications")
+    private especificationsService: Especifications){}
+  async execulte({name, description}: Especification ): Promise<void> {
+   const existeSpecifications = await this.especificationsService.FindByName(name)
+    if(existeSpecifications){
+      throw new Error("Especifications ja existem")
     }
     this.especificationsService.Create({name, description})
   }

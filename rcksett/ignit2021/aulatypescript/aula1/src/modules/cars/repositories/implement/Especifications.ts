@@ -1,29 +1,25 @@
-import { Especifications as ModelEspecifications } from "../../model/Especifications";
+import { Specifications as ModelEspecifications } from "../../entites/Especifications";
 import { CreatEspecificationsDTO, inverseDependecyEspecifications } from "./../inverseDependecyEspecifications";
+import {Repository} from "typeorm"
+import { AppDataSource } from "../../../../database/data_source";
+
 
 export class Especifications implements inverseDependecyEspecifications {
-   private dataEspecificatios: ModelEspecifications[];
+   private dataEspecificatios: Repository<ModelEspecifications>;
 
    constructor(){
-    this.dataEspecificatios = [];
+    this.dataEspecificatios = AppDataSource.getRepository(ModelEspecifications);
    }
-  FindByName(name: string): ModelEspecifications {
-    const dataEspecificatios = this.dataEspecificatios.find(e => e.name === name);
-    return dataEspecificatios
+  async Create({ name, description }: CreatEspecificationsDTO): Promise<void> {
+    const createEspecificatios = this.dataEspecificatios.create({ name, description })
+    await this.dataEspecificatios.save(createEspecificatios)
   }
-
-  Create({name, description  }: CreatEspecificationsDTO): void {
-    const newEspecidications: ModelEspecifications = new ModelEspecifications();
-    Object.assign(newEspecidications, {
-      name,
-      description
-    });
-
-    this.dataEspecificatios.push(newEspecidications);
+  async ViweEspecifications(): Promise<ModelEspecifications[]> {
+    const ViweEspecifications = await this.dataEspecificatios.find()
+    return ViweEspecifications;
   }
-  ViweEspecifications(): ModelEspecifications[] {
-    const data  = this.dataEspecificatios
-    return data;
+  async FindByName(name: string): Promise<ModelEspecifications> {
+    const findEspecificatios = await this.dataEspecificatios.findOne({ where: { name } });
+    return findEspecificatios;
   }
-
 }

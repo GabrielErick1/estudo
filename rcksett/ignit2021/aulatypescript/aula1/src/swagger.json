@@ -46,12 +46,21 @@
               "application/json": {
                 "schema": {
                   "type": "object",
-                  "500":{
-                    "description": "servidor caiu"
-                  }
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["name", "description"]
                 }
               }
             }
+          },
+          "500": {
+            "description": "Servidor caiu"
           }
         }
       },
@@ -81,6 +90,93 @@
                 }
               }
             }
+          },
+          "500": {
+            "description": "Servidor caiu"
+          }
+        }
+      }
+    },
+    "/especi": {
+      "post": {
+        "tags": ["especializacao"],
+        "summary": "Criar especialização",
+        "description": "Cria uma especialização específica",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "backend"
+                  },
+                  "description": {
+                    "type": "string",
+                    "example": "especialização em desenvolvimento backend"
+                  }
+                },
+                "required": ["name", "description"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Detalhes da especialização criada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["name", "description"]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Servidor caiu"
+          }
+        }
+      },
+      "get": {
+        "tags": ["especializacao"],
+        "summary": "Obter especializações",
+        "description": "Retorna os detalhes de todas as especializações",
+        "responses": {
+          "200": {
+            "description": "Detalhes das especializações",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "description": {
+                        "type": "string"
+                      }
+                    },
+                    "required": ["name", "description"]
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Servidor caiu"
           }
         }
       }

@@ -1,4 +1,4 @@
-import {Especifications} from "../model/Especifications"
+import {Specifications} from "../entites/Especifications"
 
 
 interface  CreatEspecificationsDTO {
@@ -6,9 +6,9 @@ interface  CreatEspecificationsDTO {
   description: string;
 }
 interface inverseDependecyEspecifications {
-   Create({name, description}: CreatEspecificationsDTO): void
-   ViweEspecifications(): Especifications[]
-   FindByName(name: string): Especifications;
+   Create({name, description}: CreatEspecificationsDTO): Promise<void>;
+   ViweEspecifications(): Promise<Specifications[]>;
+   FindByName(name: string): Promise<Specifications>;
 }
 
 export { CreatEspecificationsDTO, inverseDependecyEspecifications };

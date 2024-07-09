@@ -10,3 +10,4 @@ remover tudo : docker-compose down
 para acessar uma maquina: docker exec -it aqui o id do conteiner ou nome /bin/bash
 ver ip: docker exec postgres_db cat /etc/hosts
 craindo migrations no orm: npx typeorm migration:create src/database/migrations/CreateCategories
+npm run migration:create -- ./src/database/migrations/especificacoes
