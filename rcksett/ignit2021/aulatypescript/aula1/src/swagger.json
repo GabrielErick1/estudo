@@ -13,7 +13,7 @@
     "version": "1.0.0"
   },
   "paths": {
-    "/curse": {
+    "/category": {
       "post": {
         "tags": ["category"],
         "summary": "Criar curso",
@@ -87,6 +87,52 @@
                     },
                     "required": ["name", "description"]
                   }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Servidor caiu"
+          }
+        }
+      }
+    },
+    "/category/import": {
+      "post": {
+        "tags": ["category"],
+        "summary": "Upload das categorias",
+        "description": "Upload das categorias",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                },
+                "required": ["file"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Detalhes do upload realizado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Upload realizado com sucesso"
+                    }
+                  },
+                  "required": ["message"]
                 }
               }
             }

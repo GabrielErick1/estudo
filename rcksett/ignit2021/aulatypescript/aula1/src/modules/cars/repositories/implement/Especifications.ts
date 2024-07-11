@@ -15,7 +15,7 @@ export class Especifications implements inverseDependecyEspecifications {
     await this.dataEspecificatios.save(createEspecificatios)
   }
   async ViweEspecifications(): Promise<ModelEspecifications[]> {
-    const ViweEspecifications = await this.dataEspecificatios.find()
+    const ViweEspecifications = await this.dataEspecificatios.find();
     return ViweEspecifications;
   }
   async FindByName(name: string): Promise<ModelEspecifications> {
