@@ -40,6 +40,7 @@ export class Users1720660094216 implements MigrationInterface {
                         name: 'driver_licence',
                         type: 'varchar',
                         length: '100',
+                        isNullable: true,
                     },
                     {
                         name: 'admin',

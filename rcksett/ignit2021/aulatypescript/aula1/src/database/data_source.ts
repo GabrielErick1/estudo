@@ -1,8 +1,6 @@
 import { DataSource } from 'typeorm';
 import * as dotenv from 'dotenv';
 dotenv.config();
-
- console.log();
  
 const AppDataSource = new DataSource({
   type: "postgres" || "db",

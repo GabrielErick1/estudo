@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import {Column, CreateDateColumn, Entity, PrimaryColumn} from "typeorm"
 @Entity("users")
-export class usres {
+export class AccountUser {
 
   @PrimaryColumn()
   id?: string;
@@ -22,7 +22,7 @@ export class usres {
   email!: string
 
   @Column()
-  driverLicense!: string
+  driver_licence!: string
 
   @Column()
   isAdmin?: boolean;
