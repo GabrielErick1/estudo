@@ -226,6 +226,76 @@
           }
         }
       }
+    },
+    "/users": {
+      "post": {
+        "tags": ["users"],
+        "summary": "Criar usuário",
+        "description": "Cria um novo usuário",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string",
+                    "example": "usuario@example.com"
+                  },
+                  "name": {
+                    "type": "string",
+                    "example": "Usuário Exemplo"
+                  },
+                  "username": {
+                    "type": "string",
+                    "example": "usuario123"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "senha123"
+                  },
+                  "driver_license": {
+                    "type": "string",
+                    "example": "123456789"
+                  }
+                },
+                "required": ["email", "name", "username", "password", "driver_license"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Usuário criado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "email": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "username": {
+                      "type": "string"
+                    },
+                    "driver_license": {
+                      "type": "string"
+                    }
+                  },
+                  "required": ["email", "name", "username", "driver_license"]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno do servidor"
+          }
+        }
+      }
     }
   }
 }

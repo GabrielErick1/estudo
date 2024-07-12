@@ -6,7 +6,7 @@ import {AppDataSource} from "../../../../database/data_source"
 export class Account implements InterfaceAccount {
   private dataAccount: Repository<AccountUser>;
 
-  private constructor(){
+   constructor(){
     this.dataAccount = AppDataSource.getRepository(AccountUser);
   }
   FindByUsername(username: string): Promise<DataAccount> {

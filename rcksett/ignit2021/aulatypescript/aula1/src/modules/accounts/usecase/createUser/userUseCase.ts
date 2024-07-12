@@ -1,8 +1,22 @@
-import {InterfaceAccount, DataAccount}  from "../../repositories/IusersInterface"
+import {InterfaceAccount}  from "../../repositories/IusersInterface"
+import {inject, injectable} from "tsyringe"
 
-class AccountUsercase   {
+interface DataAccount {
+  name: string;
+  username: string;
+  password: string;
+  email: string;
+  driver_licence?: string;
+}
 
-  constructor(private DataAccountService: InterfaceAccount){}
+
+
+@injectable()
+ class AccountUsercase   {
+ 
+  constructor(
+    @inject("Accounts")
+    private DataAccountService: InterfaceAccount){}
   async execulte({email,name,username,password,driver_licence}: DataAccount): Promise<void>{
     try {
       const existUserName = await this.DataAccountService.FindByUsername(username)
@@ -13,7 +27,7 @@ class AccountUsercase   {
       if(existEmail){
         throw new Error("Email já existe")
       }
-      const userALL = await this.DataAccountService.CreateAccount({email,name,username,password,driver_licence})
+      await this.DataAccountService.CreateAccount({email,name,username,password,driver_licence})
     }catch(err: unknown){
       if (typeof err === 'string') {
         throw new Error(err);
@@ -23,3 +37,5 @@ class AccountUsercase   {
     }
   }
 }
+
+export {AccountUsercase }
