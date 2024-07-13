@@ -1,4 +1,4 @@
-import {DataAccount, InterfaceAccount} from "../IusersInterface"
+import {InterfaceAccount, DataAccount} from "../IusersInterface"
 import {AccountUser} from "../../entites/users"
 import {Repository} from "typeorm"
 import {AppDataSource} from "../../../../database/data_source"
@@ -9,19 +9,19 @@ export class Account implements InterfaceAccount {
    constructor(){
     this.dataAccount = AppDataSource.getRepository(AccountUser);
   }
-  FindByUsername(username: string): Promise<DataAccount> {
-    const ExistUsername = this.dataAccount.findOne({ where: { username } })
+  async FindByUsername(username: string): Promise<AccountUser> {
+    const ExistUsername = await this.dataAccount.findOne({ where: { username } })
     return ExistUsername;
   }
-  FindByEmail(email: string): Promise<DataAccount> {
-    const ExistEmail = this.dataAccount.findOne({ where: { email } })
+  async FindByEmail(email: string): Promise<AccountUser> {
+    const ExistEmail = await this.dataAccount.findOne({ where: { email } })
     return ExistEmail;
   }
- async CreateAccount({ name, driver_licence, email, password, username }: AccountUser): Promise<void> {
+ async CreateAccount({ name, driver_licence, email, password, username }: DataAccount): Promise<void> {
     const dataAccount = this.dataAccount.create({ name, driver_licence, email, password, username})
     await this.dataAccount.save(dataAccount)
   }
-  ViewUsers(): Promise<AccountUser[]> {
+  async ViewUsers(): Promise<AccountUser[]> {
     throw new Error("Method not implemented.");
   }
 

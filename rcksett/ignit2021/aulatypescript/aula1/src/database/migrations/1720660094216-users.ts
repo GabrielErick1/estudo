@@ -14,36 +14,30 @@ export class Users1720660094216 implements MigrationInterface {
                     {
                         name: 'name',
                         type: 'varchar',
-                        length: '100',
                         isUnique: true,
                         isNullable: false,
                     },
                     {
                         name: 'username',
                         type: 'varchar',
-                        length: '100',
                         isNullable: false,
                     },
                     {
                         name: 'password',
                         type: 'varchar',
-                        length: '100',
                         isNullable: false,
                     },
                     {
                         name: 'email',
                         type: 'varchar',
-                        length: '100',
                         isNullable: false,
                     },
                     {
                         name: 'driver_licence',
                         type: 'varchar',
-                        length: '100',
-                        isNullable: true,
                     },
                     {
-                        name: 'admin',
+                        name: 'isAdmin',
                         type: 'boolean',
                         default: false,
                     },

@@ -27,6 +27,8 @@ interface DataAccount {
       if(existEmail){
         throw new Error("Email já existe")
       }
+      console.log('use case', {email,name,username,password,driver_licence});
+      
       await this.DataAccountService.CreateAccount({email,name,username,password,driver_licence})
     }catch(err: unknown){
       if (typeof err === 'string') {
