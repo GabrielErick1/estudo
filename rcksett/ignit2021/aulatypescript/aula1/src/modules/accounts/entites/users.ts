@@ -10,14 +10,14 @@ export class AccountUser {
   @Column()
   name!: string;
 
+  @Column()
+  password!: string;
+
   @CreateDateColumn()
   createdAt!: Date;
 
   @Column()
   username!: string;
-
-  @Column()
-  password!: string;
 
   @Column()
   email!: string;
