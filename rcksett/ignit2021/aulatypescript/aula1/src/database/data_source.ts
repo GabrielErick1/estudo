@@ -10,7 +10,7 @@ const AppDataSource = new DataSource({
   password: process.env.DB_PASSWORD || "1234567",
   database: process.env.DB_NAME || "harvel",
   synchronize: true,
-  entities: ["./src/modules/cars/entites/*.ts"],
+  entities: ["./src/modules/cars/entites/*.ts", "./src/modules/accounts/entites/*.ts"],
   migrations: ["./src/database/migrations/*.ts"]
 });
 export { AppDataSource };

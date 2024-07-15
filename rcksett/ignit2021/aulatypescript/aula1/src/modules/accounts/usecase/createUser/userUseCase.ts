@@ -1,5 +1,7 @@
 import {InterfaceAccount}  from "../../repositories/IusersInterface"
 import {inject, injectable} from "tsyringe"
+import {hash} from "bcrypt"
+
 
 interface DataAccount {
   name: string;
@@ -18,6 +20,7 @@ interface DataAccount {
     @inject("Accounts")
     private DataAccountService: InterfaceAccount){}
   async execulte({email,name,username,password,driver_licence}: DataAccount): Promise<void>{
+
     try {
       const existUserName = await this.DataAccountService.FindByUsername(username)
       if(existUserName){
@@ -27,7 +30,16 @@ interface DataAccount {
       if(existEmail){
         throw new Error("Email já existe")
       }
-      await this.DataAccountService.CreateAccount({email,name,username,password,driver_licence})
+      
+      const hashedPassword = await hash(password, 10)
+      await this.DataAccountService.CreateAccount(
+        {
+          email,
+          password: hashedPassword,
+          name,
+          username,
+          driver_licence
+        })
     }catch(err: unknown){
       if (typeof err === 'string') {
         throw new Error(err);

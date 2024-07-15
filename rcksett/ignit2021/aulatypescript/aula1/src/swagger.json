@@ -279,6 +279,9 @@
                     "name": {
                       "type": "string"
                     },
+                    "password": {
+                      "type": "string"
+                    },
                     "username": {
                       "type": "string"
                     },
@@ -286,7 +289,48 @@
                       "type": "string"
                     }
                   },
-                  "required": ["email", "name", "username", "driver_license"]
+                  "required": ["email", "password", "name", "username", "driver_license"]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno do servidor"
+          }
+        }
+      },
+      "get": {
+        "tags": ["users"],
+        "summary": "Listar usuários",
+        "description": "Retorna uma lista de todos os usuários",
+        "responses": {
+          "200": {
+            "description": "Lista de usuários",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "email": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      },
+                      "password": {
+                        "type": "string"
+                      },
+                      "username": {
+                        "type": "string"
+                      },
+                      "driver_license": {
+                        "type": "string"
+                      }
+                    },
+                    "required": ["email", "password", "name", "username", "driver_license"]
+                  }
                 }
               }
             }
