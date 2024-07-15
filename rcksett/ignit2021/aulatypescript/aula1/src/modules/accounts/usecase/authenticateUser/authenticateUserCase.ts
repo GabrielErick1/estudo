@@ -1,12 +1,14 @@
-import { QueryParams } from "../repositories/IusersInterface";
-import { Account } from "../repositories/implements/AccontUsers";
-
+import { QueryParams } from "../../repositories/IusersInterface";
+import { Account } from "../../repositories/implements/AccontUsers";
+import {inject, injectable} from "tsyringe"
 import { compare } from "bcrypt";
 import {sign} from "jsonwebtoken"
 
-
+@injectable()
 export class AuthenticateUserCase {
-  constructor(private DataAccountAuthenticate: Account) {}
+  constructor(
+    @inject("Accounts")
+    private DataAccountAuthenticate: Account) {}
 
   async execute({ email, password, username }: QueryParams) {
     try {
@@ -26,8 +28,9 @@ export class AuthenticateUserCase {
       if (!passwordMatches) {
         throw  new Error('Usuário ou senha não encontrado');
       }
-      const token = sign({ userId: user.id }, 'secret_key', { expiresIn: '1d' });
+      const token = sign({ userId: user.id }, '647431b5ca55b04fdf3c2fce31ef1915', { expiresIn: '1d' });
       return {token, user}
+      
     } catch (error: unknown) {
       if (error instanceof Error) {
         throw new Error(error.message);
