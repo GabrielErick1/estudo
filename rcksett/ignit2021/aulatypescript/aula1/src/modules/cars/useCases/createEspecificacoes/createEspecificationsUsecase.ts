@@ -1,3 +1,4 @@
+import { AppError } from "../../../../errors/appError";
 import {Especifications} from "../../repositories/implement/Especifications"
 import {inject, injectable} from "tsyringe"
 interface Especification {
@@ -13,7 +14,7 @@ class createEspecificationsService {
   async execulte({name, description}: Especification ): Promise<void> {
    const existeSpecifications = await this.especificationsService.FindByName(name)
     if(existeSpecifications){
-      throw new Error("Especifications ja existem")
+      throw new AppError("Especifications ja existem", 400)
     }
     this.especificationsService.Create({name, description})
   }

@@ -1,4 +1,6 @@
-interface DataAccount {
+import { AccountUser} from "../entites/users"
+interface IaccountUser {
+  [x: string]: any;
   name: string;
   username: string;
   password: string;
@@ -13,10 +15,11 @@ interface QueryParams {
 }
 
 interface InterfaceAccount {
-  CreateAccount({name, driver_licence, email, password, username}: DataAccount): Promise<void>;
-  ViewUsers({email,  password, username}: QueryParams): Promise<DataAccount[]>;
-  FindByUsername(username: string): Promise<DataAccount>;
-  FindByEmail(email: string): Promise<DataAccount>;
+  CreateAccount({name, driver_licence, email, password, username}: IaccountUser): Promise<void>;
+  ViewUsers({email,  password, username}: QueryParams): Promise<AccountUser[]>;
+  FindByUsername(username: string): Promise<AccountUser>;
+  FindByEmail(email: string): Promise<AccountUser>;
+  FindById(email: string): Promise<AccountUser>;
 }
 
-export {DataAccount, QueryParams, InterfaceAccount}
+export {IaccountUser, QueryParams, InterfaceAccount}

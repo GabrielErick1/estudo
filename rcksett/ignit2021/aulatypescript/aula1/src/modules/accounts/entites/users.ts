@@ -23,7 +23,7 @@ export class AccountUser {
   email!: string;
 
   @Column()
-  driver_licence!: string;
+  driver_licence?: string;
 
   @Column({ default: false })
   isAdmin!: boolean;

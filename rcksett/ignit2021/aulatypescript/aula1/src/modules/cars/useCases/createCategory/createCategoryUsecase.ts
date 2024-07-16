@@ -1,3 +1,4 @@
+import { AppError } from "../../../../errors/appError";
 import { RepositoryInverse } from "../../repositories/InverseDependencyRepository";
 import {inject, injectable} from "tsyringe"
 
@@ -16,7 +17,7 @@ class createCategoryUseCase {
     
     const verifyCategory = await this.categoriesRepo.findByName(name)
     if(verifyCategory){
-      throw new Error("ja exixte esse nome")
+      throw new AppError("ja exixte esse nome", 400)
     }
     this.categoriesRepo.Create({ name, description });
   }
