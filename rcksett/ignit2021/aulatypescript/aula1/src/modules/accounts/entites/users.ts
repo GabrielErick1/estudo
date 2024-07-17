@@ -21,6 +21,9 @@ export class AccountUser {
 
   @Column()
   email!: string;
+  
+  @Column()
+  avatar?: string;
 
   @Column()
   driver_licence?: string;

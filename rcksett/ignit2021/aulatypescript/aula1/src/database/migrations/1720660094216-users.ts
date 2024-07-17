@@ -33,6 +33,11 @@ export class Users1720660094216 implements MigrationInterface {
                         isNullable: false,
                     },
                     {
+                        name: 'avatar',
+                        type: 'varchar',
+                        isNullable: true,
+                    },
+                    {
                         name: 'driver_licence',
                         type: 'varchar',
                     },
