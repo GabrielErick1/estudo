@@ -1,23 +1,91 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "Exemplo de Título",
-    "description": "Aqui estão os contatos",
+    "title": "API de Exemplo",
+    "description": "API para gerenciamento de cursos e especializações",
     "contact": {
       "name": "API Support",
       "url": "http://www.example.com/support",
-      "email": "support@example.com",
-      "phone": "+5565999340588",
-      "x-whatsapp": "+5565999340588"
+      "email": "support@example.com"
     },
     "version": "1.0.0"
   },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "security": [
+    {
+      "bearerAuth": []
+    }
+  ],
   "paths": {
+    "/session": {
+      "post": {
+        "tags": ["session"],
+        "summary": "Autenticar usuário",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "username": {
+                    "type": "string",
+                    "example": "usuario123"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "usuario@example.com"
+                  },
+                  "password": {
+                    "type": "string",
+                    "example": "senha123"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Autenticação bem-sucedida",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "token": {
+                      "type": "string",
+                      "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxMjM0NTY3ODkwIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Credenciais inválidas"
+          }
+        }
+      }
+    },
     "/category": {
       "post": {
         "tags": ["category"],
         "summary": "Criar curso",
         "description": "Cria um curso específico",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -68,6 +136,11 @@
         "tags": ["category"],
         "summary": "Obter curso",
         "description": "Retorna os detalhes de um curso específico",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "responses": {
           "200": {
             "description": "Detalhes do curso",
@@ -102,6 +175,11 @@
         "tags": ["category"],
         "summary": "Upload das categorias",
         "description": "Upload das categorias",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -259,8 +337,7 @@
                     "type": "string",
                     "example": "123456789"
                   }
-                },
-                "required": ["email", "name", "username", "password", "driver_license"]
+                }
               }
             }
           }
@@ -289,7 +366,7 @@
                       "type": "string"
                     }
                   },
-                  "required": ["email", "password", "name", "username", "driver_license"]
+                  "required": ["email", "password", "name", "username", "avatar", "driver_license"]
                 }
               }
             }
@@ -329,11 +406,68 @@
                         "type": "string"
                       }
                     },
-                    "required": ["email", "password", "name", "username", "driver_license"]
+                    "required": ["email", "password", "name", "username", "avatar", "driver_license"]
                   }
                 }
               }
             }
+          },
+          "500": {
+            "description": "Erro interno do servidor"
+          }
+        }
+      }
+    },
+    "/users/avatar": {
+      "patch": {
+        "tags": ["users"],
+        "summary": "Atualizar avatar do usuário",
+        "description": "Atualiza o campo avatar de um usuário",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJiMzdiMWFkOC1mMTBiLTQzOGYtOWIzZS05YWEyY2QzNjIzNzIiLCJpYXQiOjE3MjEyNjU0NjEsImV4cCI6MTcyMTM1MTg2MX0.ec3mNMS4FMsT07bYrUbQjdYxNPaZSDV4kFKVxkurMgk"
+                  },
+                  "avatar": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                },
+                "required": ["id", "avatar"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Avatar atualizado com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Avatar atualizado com sucesso"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Requisição inválida"
           },
           "500": {
             "description": "Erro interno do servidor"

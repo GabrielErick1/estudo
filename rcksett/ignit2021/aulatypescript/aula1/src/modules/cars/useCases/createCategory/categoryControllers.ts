@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { createCategoryUseCase } from "./createCategoryUsecase"; 
 import {container} from "tsyringe"
-
+import { AppError } from "../../../../errors/appError";
 
 export class CategoryController {
    
@@ -11,11 +11,12 @@ export class CategoryController {
             const CreateCategoryUseCase = container.resolve(createCategoryUseCase);
             await CreateCategoryUseCase.execute({ name, description });
             return res.status(201).send();
-        } catch (err) {
-            if (err instanceof Error) {
-                return res.status(400).json({ error: err.message });
+        } catch (err: unknown) {
+            if (err instanceof AppError) {
+                return res.status(err.statusCode).json({ error: err.message });
             } else {
-                return res.status(500).json({ error: 'Internal Server Error' });
+                // Handle other types of errors
+                return res.status(500).json({ error: 'Internal server error' });
             }
         }
     }

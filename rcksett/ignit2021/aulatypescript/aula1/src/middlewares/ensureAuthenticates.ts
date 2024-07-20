@@ -19,6 +19,9 @@ export const ensureAuthenticates   = async (req: Request, res: Response, next: N
         if(!user){
             throw new AppError('User does not exist', 400)
         }
+        req.user = {
+            id: userId,
+        }
         next();
     }
     catch{

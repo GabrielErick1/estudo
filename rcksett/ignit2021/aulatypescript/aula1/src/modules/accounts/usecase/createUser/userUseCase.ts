@@ -1,15 +1,7 @@
-import { InterfaceAccount } from "../../repositories/IusersInterface";
+import { InterfaceAccount, IaccountUser } from "../../repositories/IusersInterface";
 import { inject, injectable } from "tsyringe";
 import { hash } from "bcrypt";
 import { AppError } from "../../../../errors/appError";
-
-interface DataAccount {
-  name: string;
-  username: string;
-  password: string;
-  email: string;
-  driver_licence?: string;
-}
 
 @injectable()
 class AccountUsercase {
@@ -24,7 +16,7 @@ class AccountUsercase {
     username,
     password,
     driver_licence
-  }: DataAccount): Promise<void> {
+  }: IaccountUser): Promise<void> {
     
     const existUserName = await this.DataAccountService.FindByUsername(username);
     if (existUserName) {

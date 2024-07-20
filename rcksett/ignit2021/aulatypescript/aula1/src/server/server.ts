@@ -3,7 +3,7 @@ import swaggerUi from 'swagger-ui-express';
 import swaggerFile from '../swagger.json';
 import 'dotenv/config';
 import { AppDataSource } from '../database/data_source';
-import { SpecializationRouters, routeAutenticate, CategoryRoutes } from '../routers';
+import { SpecializationRouters, routeAutenticate, CategoryRoutes, routesUsers } from '../routers';
 import "../shared/container/index"
 import { AppError } from '../errors/appError';
 import 'express-async-errors';
@@ -22,6 +22,8 @@ const startServer = async () => {
     app.use(SpecializationRouters);
     app.use(routeAutenticate);
     app.use(CategoryRoutes);
+    app.use(routesUsers);
+    
     app.use((err: Error, req: express.Request, res: express.Response, next: express.NextFunction)=>{
       if (err instanceof AppError) {
         res.status(err.statusCode).json({ error: err.message });

@@ -25,8 +25,8 @@ export class Account implements InterfaceAccount {
     const ExistEmail = await this.AccountUser.findOne({ where: { email } })
     return ExistEmail;
   }
- async CreateAccount({ name, driver_licence, email, password, username }: IaccountUser): Promise<void> {
-    const AccountUser = this.AccountUser.create({ name, driver_licence, email, password, username})
+ async CreateAccount({ name, driver_licence, email, password, username, avatar, id }: IaccountUser): Promise<void> {
+    const AccountUser = this.AccountUser.create({ name, driver_licence, email, password, username, avatar, id })
     await this.AccountUser.save(AccountUser)
   }
   

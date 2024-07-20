@@ -6,6 +6,8 @@
     "Ipayload",
     "licence",
     "Modelcategory",
-    "tsyringe"
+    "tsyringe",
+    "typeorm",
+    "Usecase"
   ]
 }
