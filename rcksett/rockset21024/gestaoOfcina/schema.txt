@@ -1,0 +1,356 @@
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Cliente {
+  id                     String           @id @default(uuid())
+  nome                   String
+  telefone               String?
+  email                  String           @unique
+  cpf                    String           @unique
+  dataDeNascimento       DateTime
+  placaDoCarro           String?
+  password               String
+  dataDeUltimaRevisao    DateTime?
+  tipo                   TipoCliente      @default(COMUM)
+  clienteCadastrador     String?
+  carros                 Carro[]
+  ordensDeServico        OrdemDeServico[]
+  revisoes               Revisao[]
+  criadoPor              Funcionario?     @relation("ClienteCriadoPorFuncionario", fields: [criadoPorId], references: [id])
+  criadoPorId            String?
+  funcionariosExecutores Funcionario[]    @relation("ServicosExecutadosPorFuncionarios")
+
+  @@map("clientes")
+}
+
+model Funcionario {
+  id                 String           @id @default(uuid())
+  nome               String
+  username           String           @unique
+  cpf                String           @unique
+  dataDeNascimento   DateTime
+  email              String           @unique
+  senha              String
+  tipo               TipoFuncionario
+  clientesCriados    Cliente[]        @relation("ClienteCriadoPorFuncionario")
+  ordensCriadas      OrdemDeServico[] @relation("OrdemDeServicoCriadaPorFuncionario")
+  ordensAprovadas    OrdemDeServico[] @relation("AprovadoPor")
+  pecasCriadas       Peca[]           @relation("PecasCriadas")
+  servicosExecutados Cliente[]        @relation("ServicosExecutadosPorFuncionarios")
+
+  @@map("funcionarios")
+}
+
+model Carro {
+  id        String    @id @default(uuid())
+  placa     String    @unique
+  modelo    String
+  ano       Int
+  cliente   Cliente   @relation(fields: [clienteId], references: [id])
+  clienteId String
+  revisoes  Revisao[]
+
+  @@map("carros")
+}
+
+model Servico {
+  id              String           @id @default(uuid())
+  tipoDeServico   String
+  valor           Decimal
+  ordensDeServico OrdemDeServico[]
+
+  @@map("servicos")
+}
+
+model Peca {
+  id          String      @id @default(uuid())
+  nome        String
+  tipo        String
+  valor       Decimal
+  quantidade  Int
+  criadoPor   Funcionario @relation("PecasCriadas", fields: [criadoPorId], references: [id])
+  criadoPorId String
+
+  @@map("pecas")
+}
+
+model OrdemDeServico {
+  id                String       @id @default(uuid())
+  placaDoCarro      String
+  servicosPrestados String
+  cpf               String
+  pecasUsadas       String
+  valorTotal        Float
+  dataDeRealizacao  DateTime
+  dataDeVencimento  DateTime
+  cliente           Cliente      @relation(fields: [clienteId], references: [id])
+  clienteId         String
+  criadoPor         Funcionario  @relation("OrdemDeServicoCriadaPorFuncionario", fields: [criadoPorId], references: [id])
+  criadoPorId       String
+  aprovado          Boolean      @default(false)
+  aprovadoPor       Funcionario? @relation("AprovadoPor", fields: [aprovadoPorId], references: [id])
+  aprovadoPorId     String?
+  pagamentos        Pagamento[] // Relacionamento com o modelo Pagamento
+  Servico           Servico?     @relation(fields: [servicoId], references: [id])
+  servicoId         String?
+
+  @@map("ordens_de_servico")
+}
+
+model Revisao {
+  id                   String    @id @default(uuid())
+  placaDoCarro         String
+  dataDaRevisao        DateTime
+  dataDaProximaRevisao DateTime?
+  mensagemPredefinida  String?
+  carro                Carro     @relation(fields: [carroId], references: [id])
+  carroId              String
+  Cliente              Cliente?  @relation(fields: [clienteId], references: [id])
+  clienteId            String?
+
+  @@map("revisoes")
+}
+
+enum TipoCliente {
+  COMUM
+}
+
+enum TipoFuncionario {
+  super_admin // quem é responsável pelo site todo no caso você
+  moderador // dono da empresa que adquiriu o serviço 
+  admin // adm da empresa 
+  funcionario // outros funcionários da empresa
+}
+
+enum FormaPagamento {
+  DINHEIRO
+  CARTAO
+  Pix
+}
+
+model Pagamento {
+  id               String         @id @default(uuid())
+  formaDePagamento FormaPagamento
+  ordemDeServico   OrdemDeServico @relation(fields: [ordemDeServicoId], references: [id])
+  ordemDeServicoId String
+
+  @@map("pagamentos")
+}
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Cliente {
+  id                     String              @id @default(uuid())
+  nome                   String
+  telefone               String?
+  email                  String              @unique
+  cpf                    String              @unique
+  dataDeNascimento       DateTime
+  password               String
+  dataDeUltimaRevisao    DateTime?
+  tipo                   TipoCliente         @default(COMUM)
+  clienteCadastrador     String?
+  carros                 Carro[]
+  ordensDeServico        OrdemDeServico[]
+  revisoes               Revisao[]
+  criadoPor              Funcionario?        @relation("ClienteCriadoPorFuncionario", fields: [criadoPorId], references: [id])
+  criadoPorId            String?
+  funcionariosExecutores Funcionario[]       @relation("ServicosExecutadosPorFuncionarios")
+
+  @@map("clientes")
+}
+
+model Funcionario {
+  id                    String           @id @default(uuid())
+  nome                  String
+  username              String           @unique
+  cpf                   String           @unique
+  dataDeNascimento      DateTime
+  email                 String           @unique
+  senha                 String
+  tipo                  TipoFuncionario
+  clientesCriados       Cliente[]        @relation("ClienteCriadoPorFuncionario")
+  ordensCriadas         OrdemDeServico[] @relation("OrdemDeServicoCriadaPorFuncionario")
+  ordensAprovadas       OrdemDeServico[] @relation("AprovadoPor")
+  pecasCriadas          Peca[]           @relation("PecasCriadas")
+  servicosExecutados    Cliente[]        @relation("ServicosExecutadosPorFuncionarios")
+  ordensDeEstoque       OrdemEstoque[]   @relation("OrdemDeEstoqueGerenciadaPor")
+
+  @@map("funcionarios")
+}
+
+model Carro {
+  id        String    @id @default(uuid())
+  placa     String    @unique
+  modelo    String
+  ano       Int
+  cliente   Cliente   @relation(fields: [clienteId], references: [id])
+  clienteId String
+  revisoes  Revisao[]
+
+  @@map("carros")
+}
+
+model Servico {
+  id              String           @id @default(uuid())
+  tipoDeServico   String
+  valor           Decimal
+  ordensDeServico OrdemDeServico[]
+
+  @@map("servicos")
+}
+
+model Peca {
+  id          String      @id @default(uuid())
+  nome        String
+  tipo        String
+  valor       Decimal
+  quantidade  Int
+  criadoPor   Funcionario @relation("PecasCriadas", fields: [criadoPorId], references: [id])
+  criadoPorId String
+
+  ordensDeServico OrdemDeServico[] @relation("PecasUsadasNasOrdens")
+
+  @@map("pecas")
+}
+
+model OrdemDeServico {
+  id                String                 @id @default(uuid())
+  placaDoCarro      String
+  servicosPrestados String
+  cpf               String
+  valorTotal        Float
+  dataDeRealizacao  DateTime
+  dataDeVencimento  DateTime
+  status            StatusOrdem            @default(EM_ANDAMENTO)
+  cliente           Cliente                @relation(fields: [clienteId], references: [id])
+  clienteId         String
+  criadoPor         Funcionario            @relation("OrdemDeServicoCriadaPorFuncionario", fields: [criadoPorId], references: [id])
+  criadoPorId       String
+  aprovado          Boolean                @default(false)
+  aprovadoPor       Funcionario?           @relation("AprovadoPor", fields: [aprovadoPorId], references: [id])
+  aprovadoPorId     String?
+  pecasUsadas       Peca[]                 @relation("PecasUsadasNasOrdens")
+  pagamentos        OrdemServicoPagamento[]
+  servico           Servico?               @relation(fields: [servicoId], references: [id])
+  servicoId         String?
+  ordemDeEstoque    OrdemEstoque?          @relation(fields: [ordemDeEstoqueId], references: [id])
+  ordemDeEstoqueId  String?                @unique
+
+  @@map("ordens_de_servico")
+}
+
+model OrdemEstoque {
+  id               String           @id @default(uuid())
+  ordemDeServico   OrdemDeServico?  @relation(references: [id])
+  ordemDeServicoId String?          @unique
+  pecaAprovada     Boolean          @default(false)
+  mensagem         String?
+  aprovadoPor      Funcionario?     @relation("OrdemDeEstoqueGerenciadaPor", fields: [aprovadoPorId], references: [id])
+  aprovadoPorId    String?
+
+  @@map("ordem_estoque")
+}
+
+
+model Revisao {
+  id                   String    @id @default(uuid())
+  placaDoCarro         String
+  dataDaRevisao        DateTime
+  dataDaProximaRevisao DateTime?
+  mensagemPredefinida  String?
+  carro                Carro     @relation(fields: [carroId], references: [id])
+  carroId              String
+  cliente              Cliente?  @relation(fields: [clienteId], references: [id])
+  clienteId            String?
+
+  @@map("revisoes")
+}
+
+model Pagamento {
+  id               String         @id @default(uuid())
+  formaDePagamento FormaPagamento
+  ordens           OrdemServicoPagamento[]
+
+  @@map("pagamentos")
+}
+
+model OrdemServicoPagamento {
+  id               String         @id @default(uuid())
+  ordemDeServicoId String
+  pagamentoId      String
+  ordemDeServico   OrdemDeServico @relation(fields: [ordemDeServicoId], references: [id])
+  pagamento        Pagamento      @relation(fields: [pagamentoId], references: [id])
+
+  @@map("ordem_servico_pagamento")
+}
+
+enum TipoCliente {
+  COMUM
+}
+
+enum TipoFuncionario {
+  super_admin
+  moderador
+  admin
+  rh
+  estoque
+}
+
+enum FormaPagamento {
+  DINHEIRO
+  CARTAO
+  PIX
+}
+
+enum StatusOrdem {
+  EM_ANDAMENTO
+  CONCLUIDA
+  CANCELADA
+}
