@@ -27,7 +27,6 @@ export enum TipoFuncionario {
   SUPER_ADMIN = "super_admin",
   MODERADOR = "moderador",
   ADMIN = "admin",
-  FUNCIONARIO = "funcionario",
   RH = "rh",
   ESTOQUE = "estoque",
 }
@@ -35,8 +34,21 @@ export enum TipoFuncionario {
 export enum FormaPagamento {
   DINHEIRO = "DINHEIRO",
   CARTAO = "CARTAO",
-  PIX = "Pix",
+  PIX = "PIX",
 }
+
+export enum StatusOrdem {
+  EM_ANDAMENTO = "EM_ANDAMENTO",
+  CONCLUIDA = "CONCLUIDA",
+  CANCELADA = "CANCELADA",
+}
+
+export enum TipoNotificacao {
+  REVISAO = "REVISAO",
+  ORDEM_SERVICO = "ORDEM_SERVICO",
+  PROMOCAO = "PROMOCAO",
+}
+
 
 export interface RegisterInterface {
   id?: string;
@@ -55,7 +67,6 @@ export interface RegisterInterface {
   ordensDeServico?: OrdemDeServicoInterface[];
   revisoes?: RevisaoInterface[] | undefined;
 }
-
 
 export interface CarroInterface {
   id?: string;
@@ -88,12 +99,11 @@ export interface RevisaoInterface {
   id?: string;
   placaDoCarro: string;
   dataDaRevisao: Date;
-  dataDaProximaRevisao?: Date | null; // Permite null
+  dataDaProximaRevisao?: Date; // Permite null
   mensagemPredefinida?: string;
   carroId: string;
   clienteId?: string;
 }
-
 
 export interface PagamentoInterface {
   id?: string;
@@ -149,7 +159,6 @@ export interface OrdemEstoqueInterface {
   mensagem?: string;
   aprovadoPorId?: string;
 }
-
 
 /*
 model Funcionario {

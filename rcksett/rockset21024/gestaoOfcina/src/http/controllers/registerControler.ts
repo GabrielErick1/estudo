@@ -1,18 +1,19 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
 import { z } from 'zod'; 
+import {RegisterInterfaceSchema} from "@/domain/usecases/zodOficina"
 import { RegisterUsecase } from '@/usecases/users/registerUseCase';
 import { PrismaUserRepository } from "@/repositories/implements/prismaUsersRepository";
 import { AppError } from '@/utils/AppError';
 import { TipoCliente } from '@/domain/usecases/IRegisterUser';
 
 export const Register = async (req: FastifyRequest, res: FastifyReply) => {
-
+/*
   const parseDate = (date: any): Date | null => {
     const parsedDate = new Date(date);
     return isNaN(parsedDate.getTime()) ? null : parsedDate;
   }
 
-  const registerBodySchema = z.object({
+  const RegisterInterfaceSchema = z.object({
     nome: z.string().min(2).max(60),
     email: z.string().email().min(8).max(100),
     password: z.string().min(6).max(100),
@@ -52,7 +53,7 @@ export const Register = async (req: FastifyRequest, res: FastifyReply) => {
     })).nullable().optional(),
     tipo: z.nativeEnum(TipoCliente).optional(), // Permite que seja omitido
   });
-
+*/
   const {
     email,
     password,
@@ -60,14 +61,13 @@ export const Register = async (req: FastifyRequest, res: FastifyReply) => {
     cpf,
     cnpj,
     dataDeNascimento,
-    tipo,
     telefone,
     carros,
     clienteCadastrador,
     criadoPorId,
     ordensDeServico,
     revisoes,
-  } = registerBodySchema.parse(req.body);
+  } = RegisterInterfaceSchema.parse(req.body);
 
   try {
     const userRepo = new PrismaUserRepository();
@@ -79,14 +79,14 @@ export const Register = async (req: FastifyRequest, res: FastifyReply) => {
       nome,
       cpf: cpf ?? undefined,
       cnpj: cnpj ?? undefined,
-      tipo: tipo ?? TipoCliente.COMUM, // Usa "COMUM" como padrão se não for fornecido
-      telefone: telefone ?? undefined,
+      telefone: telefone?? undefined,
       dataDeNascimento: dataDeNascimento ?? undefined,
       clienteCadastrador: clienteCadastrador ?? undefined,
       criadoPorId: criadoPorId ?? undefined,
       carros: carros ?? [], 
       ordensDeServico: ordensDeServico ?? [],
       revisoes: revisoes ?? [],
+
     });
 
     res.status(201).send({ message: "User registered successfully" });

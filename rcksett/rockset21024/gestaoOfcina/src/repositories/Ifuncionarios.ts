@@ -1,4 +1,4 @@
-import {TipoFuncionario} from "@/domain/usecases/IRegisterUser"
+import {FuncionarioInterface} from "@/domain/usecases/IRegisterUser"
 
 export interface IUser {
     email: string
@@ -6,8 +6,8 @@ export interface IUser {
 }
 
 export interface ICreateFuncionarios {
-    create(data: TipoFuncionario): Promise<TipoFuncionario>
-    findByEmail(email: string): Promise<TipoFuncionario | null>
-    FindByUsername(username: string): Promise<TipoFuncionario | null>;
-    findAll({email, password}: IUser): Promise<TipoFuncionario[]>
+    create(data: FuncionarioInterface): Promise<FuncionarioInterface>
+    findByEmail(email: string): Promise<FuncionarioInterface | null>
+    FindByUsername(username: string): Promise<FuncionarioInterface | null>;
+    findAll(): Promise<FuncionarioInterface[]>
 }
