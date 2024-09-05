@@ -1,13 +1,13 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
 import { z } from 'zod'; 
-import {RegisterInterfaceSchema} from "@/domain/usecases/zodOficina"
+//import {RegisterInterfaceSchema} from "@/domain/usecases/zodOficina"
 import { RegisterUsecase } from '@/usecases/users/registerUseCase';
 import { PrismaUserRepository } from "@/repositories/implements/prismaUsersRepository";
 import { AppError } from '@/utils/AppError';
-import { TipoCliente } from '@/domain/usecases/IRegisterUser';
+import { RevisaoInterface, TipoCliente } from '@/domain/usecases/IRegisterUser';
 
 export const Register = async (req: FastifyRequest, res: FastifyReply) => {
-/*
+
   const parseDate = (date: any): Date | null => {
     const parsedDate = new Date(date);
     return isNaN(parsedDate.getTime()) ? null : parsedDate;
@@ -53,7 +53,7 @@ export const Register = async (req: FastifyRequest, res: FastifyReply) => {
     })).nullable().optional(),
     tipo: z.nativeEnum(TipoCliente).optional(), // Permite que seja omitido
   });
-*/
+
   const {
     email,
     password,
@@ -85,8 +85,7 @@ export const Register = async (req: FastifyRequest, res: FastifyReply) => {
       criadoPorId: criadoPorId ?? undefined,
       carros: carros ?? [], 
       ordensDeServico: ordensDeServico ?? [],
-      revisoes: revisoes ?? [],
-
+      revisoes: revisoes as RevisaoInterface[] ?? [],
     });
 
     res.status(201).send({ message: "User registered successfully" });

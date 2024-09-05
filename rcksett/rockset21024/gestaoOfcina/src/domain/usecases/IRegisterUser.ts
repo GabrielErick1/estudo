@@ -63,8 +63,8 @@ export interface RegisterInterface {
   telefone?: string;
   tipo?: TipoCliente;
   criadoPorId?: string;
-  carros?: CarroInterface[];
-  ordensDeServico?: OrdemDeServicoInterface[];
+  carros?: CarroInterface[] | undefined;
+  ordensDeServico?: OrdemDeServicoInterface[] | undefined;
   revisoes?: RevisaoInterface[] | undefined;
 }
 

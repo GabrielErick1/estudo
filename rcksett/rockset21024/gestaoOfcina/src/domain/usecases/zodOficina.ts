@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { string, z } from 'zod';
 
 // Função para analisar datas
 const parseDate = (date: any): Date | null => {
@@ -30,12 +30,12 @@ export const RegisterInterfaceSchema = z.object({
   password: z.string(),
   cpf: z.string().optional(),
   cnpj: z.string().optional(),
-  dataDeNascimento: DateSchema.optional(),
   dataDeUltimaRevisao: DateSchema.optional(),
   clienteCadastrador: z.string().optional(),
   telefone: z.string().optional(),
   tipo: TipoClienteSchema.optional(),
   criadoPorId: z.string().optional(),
+
   carros: z.array(z.object({
     id: z.string().optional(),
     placa: z.string(),
@@ -52,6 +52,7 @@ export const RegisterInterfaceSchema = z.object({
       clienteId: z.string().optional(),
     })).optional(),
   })).optional(),
+
   ordensDeServico: z.array(z.object({
     id: z.string().optional(),
     placaDoCarro: z.string(),
@@ -79,6 +80,7 @@ export const RegisterInterfaceSchema = z.object({
       aprovadoPorId: z.string().optional(),
     })).optional(),
   })).optional(),
+
   revisoes: z.array(z.object({
     id: z.string().optional(),
     placaDoCarro: z.string(),
