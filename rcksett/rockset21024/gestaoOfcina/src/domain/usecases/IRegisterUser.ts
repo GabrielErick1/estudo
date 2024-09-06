@@ -29,6 +29,7 @@ export enum TipoFuncionario {
   ADMIN = "admin",
   RH = "rh",
   ESTOQUE = "estoque",
+  FUNCIONARIO = "funcionario"
 }
 
 export enum FormaPagamento {
@@ -125,6 +126,7 @@ export interface FuncionarioInterface {
   username: string;
   cpf: string;
   dataDeNascimento: Date;
+  telefone?: string;
   email: string;
   senha: string;
   tipo: TipoFuncionario;

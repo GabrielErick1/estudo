@@ -16,7 +16,7 @@ const DateSchema = z.custom<Date | null>(value => {
 
 // Enum Schemas
 export const TipoClienteSchema = z.enum(['COMUM']);
-export const TipoFuncionarioSchema = z.enum(['super_admin', 'moderador', 'admin', 'rh', 'estoque']);
+export const TipoFuncionarioSchema = z.enum(['super_admin', 'moderador', 'admin', 'rh', 'estoque', 'funcionario']);
 export const FormaPagamentoSchema = z.enum(['DINHEIRO', 'CARTAO', 'PIX']);
 export const StatusOrdemSchema = z.enum(['EM_ANDAMENTO', 'CONCLUIDA', 'CANCELADA']);
 export const TipoNotificacaoSchema = z.enum(['REVISAO', 'ORDEM_SERVICO', 'PROMOCAO']);
@@ -28,9 +28,10 @@ export const RegisterInterfaceSchema = z.object({
   nome: z.string(),
   email: z.string().email(),
   password: z.string(),
+  dataDeNascimento: z.date().optional(),
   cpf: z.string().optional(),
   cnpj: z.string().optional(),
-  dataDeUltimaRevisao: DateSchema.optional(),
+  dataDeUltimaRevisao: z.date().optional(),
   clienteCadastrador: z.string().optional(),
   telefone: z.string().optional(),
   tipo: TipoClienteSchema.optional(),
@@ -45,8 +46,8 @@ export const RegisterInterfaceSchema = z.object({
     revisoes: z.array(z.object({
       id: z.string().optional(),
       placaDoCarro: z.string(),
-      dataDaRevisao: DateSchema,
-      dataDaProximaRevisao: DateSchema.optional(),
+      dataDaRevisao: z.date(),
+      dataDaProximaRevisao: z.date().optional(),
       mensagemPredefinida: z.string().optional(),
       carroId: z.string(),
       clienteId: z.string().optional(),
@@ -60,8 +61,8 @@ export const RegisterInterfaceSchema = z.object({
     cpf: z.string(),
     pecasUsadas: z.string(),
     valorTotal: z.number(),
-    dataDeRealizacao: DateSchema,
-    dataDeVencimento: DateSchema,
+    dataDeRealizacao: z.date(),
+    dataDeVencimento: z.date(),
     clienteId: z.string(),
     criadoPorId: z.string(),
     aprovado: z.boolean(),
@@ -85,7 +86,7 @@ export const RegisterInterfaceSchema = z.object({
     id: z.string().optional(),
     placaDoCarro: z.string(),
     dataDaRevisao: DateSchema,
-    dataDaProximaRevisao: DateSchema.optional(),
+    dataDaProximaRevisao: z.date().optional(),
     mensagemPredefinida: z.string().optional(),
     carroId: z.string(),
     clienteId: z.string().optional(),
@@ -102,7 +103,7 @@ export const CarroInterfaceSchema = z.object({
     id: z.string().optional(),
     placaDoCarro: z.string(),
     dataDaRevisao: DateSchema,
-    dataDaProximaRevisao: DateSchema.nullable().optional(),
+    dataDaProximaRevisao: z.date().optional(),
     mensagemPredefinida: z.string().optional(),
     carroId: z.string(),
     clienteId: z.string().optional(),
@@ -116,8 +117,8 @@ export const OrdemDeServicoInterfaceSchema = z.object({
   cpf: z.string(),
   pecasUsadas: z.string(),
   valorTotal: z.number(),
-  dataDeRealizacao: DateSchema,
-  dataDeVencimento: DateSchema,
+  dataDeRealizacao: z.date(),
+  dataDeVencimento: z.date(),
   clienteId: z.string(),
   criadoPorId: z.string(),
   aprovado: z.boolean(),
@@ -140,8 +141,8 @@ export const OrdemDeServicoInterfaceSchema = z.object({
 export const RevisaoInterfaceSchema = z.object({
   id: z.string().optional(),
   placaDoCarro: z.string(),
-  dataDaRevisao: DateSchema,
-  dataDaProximaRevisao: DateSchema.nullable().optional(),
+  dataDaRevisao: z.date(),
+  dataDaProximaRevisao: z.date().optional(),
   mensagemPredefinida: z.string().optional(),
   carroId: z.string(),
   clienteId: z.string().optional(),
@@ -166,8 +167,9 @@ export const FuncionarioInterfaceSchema = z.object({
   nome: z.string(),
   username: z.string(),
   cpf: z.string(),
-  dataDeNascimento: DateSchema,
+  dataDeNascimento: z.date(),
   email: z.string().email(),
+  telefone: z.string().optional(),
   senha: z.string(),
   tipo: TipoFuncionarioSchema,
   clientesCriados: z.array(RegisterInterfaceSchema).optional(),

@@ -37,6 +37,7 @@ model Funcionario {
   dataDeNascimento   DateTime
   email              String           @unique
   senha              String
+  telefone           String?
   tipo               TipoFuncionario
   clientesCriados    Cliente[]        @relation("ClienteCriadoPorFuncionario")
   ordensCriadas      OrdemDeServico[] @relation("OrdemDeServicoCriadaPorFuncionario")
@@ -192,6 +193,7 @@ enum TipoFuncionario {
   admin
   rh
   estoque
+  funcionario
 }
 
 enum FormaPagamento {
