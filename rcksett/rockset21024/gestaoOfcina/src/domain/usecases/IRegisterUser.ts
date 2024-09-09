@@ -1,23 +1,4 @@
-/*import { Carro, OrdemDeServico, Revisao } from "@prisma/client";
 
-export interface RegisterInterface {
-  id?: string;
-  nome: string;
-  email: string;
-  cpf:   string;
-  dataDeNascimento: Date;
-  password: string;
-  telefone?: string;
-  placaDoCarro?: string;
-  dataDeUltimaRevisao?: Date;
-  tipo?: string;
-  clienteCadastrador?: string;
-  criadoPorId?: string;
-  carros?: Carro[];  // Altere para uma lista de Carro
-  ordensDeServico?: OrdemDeServico[]; // Altere para uma lista de OrdemDeServico
-  revisoes?: Revisao[]; // Altere para uma lista de Revisao
-}
-*/
 
 export enum TipoCliente {
   COMUM = "COMUM",
@@ -119,7 +100,6 @@ export interface OrdemEstoqueInterface {
   mensagem?: string;
   aprovadoPorId?: string;
 }
-
 export interface FuncionarioInterface {
   id?: string;
   nome: string;
@@ -161,53 +141,3 @@ export interface OrdemEstoqueInterface {
   mensagem?: string;
   aprovadoPorId?: string;
 }
-
-/*
-model Funcionario {
-  clientesCriados    Cliente[]        @relation("ClienteCriadoPorFuncionario")
-  ordensCriadas      OrdemDeServico[] @relation("OrdemDeServicoCriadaPorFuncionario")
-  ordensAprovadas    OrdemDeServico[] @relation("AprovadoPor")
-  pecasCriadas       Peca[]           @relation("PecasCriadas")
-  servicosExecutados Cliente[]        @relation("ServicosExecutadosPorFuncionarios")
-
-  // Relacionamento para gestão de estoque
-  ordensDeEstoque OrdemEstoque[] @relation("OrdemDeEstoqueGerenciadaPor")
-
-  @@map("funcionarios")
-}
-*/
-
-/*
-export interface RegisterInterface {
-  id?: string;
-  tipo?: string;
-  email: string;
-  nome: string;
-  password: string;
-  telefone?: string;
-  placaDoCarro?: string;
-  dataDeUltimaRevisao?: Date;
-  clienteCadastrador?: string;
-  criadoPorId?: string;
-  carros: Array<{
-    placa: string;
-    modelo: string;
-    ano: number;
-  }> ;
-  ordensDeServico?: Array<{
-    placaDoCarro: string;
-    servicosPrestados: string;
-    pecasUsadas: string;
-    valorTotal: number;
-    dataDeRealizacao: Date;
-    dataDeVencimento: Date;
-    formaDePagamento: string[] ; 
-  }> | undefined;
-  revisoes?: Array<{
-    placaDoCarro: string;
-    dataDaRevisao: Date;
-    dataDaProximaRevisao: Date;
-    mensagemPredefinida?: string;
-    carroId: string;
-  }> | undefined;
-}*/

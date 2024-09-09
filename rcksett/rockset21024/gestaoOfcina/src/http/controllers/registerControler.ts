@@ -1,10 +1,9 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
 import { z } from 'zod'; 
 import {RegisterInterfaceSchema} from "@/domain/usecases/zodOficina"
-import { RegisterUsecase } from '@/usecases/users/registerUseCase';
-import { PrismaUserRepository } from "@/repositories/implements/prismaUsersRepository";
 import { AppError } from '@/utils/AppError';
 import { OrdemDeServicoInterface, RevisaoInterface, TipoCliente } from '@/domain/usecases/IRegisterUser';
+import { FactoriesregisterUseCase } from '@/usecases/factories/make.register-usecase-cliente';
 
 export const Register = async (req: FastifyRequest, res: FastifyReply) => {
 
@@ -72,9 +71,7 @@ export const Register = async (req: FastifyRequest, res: FastifyReply) => {
   } = RegisterInterfaceSchema.parse(req.body);
 
   try {
-    const userRepo = new PrismaUserRepository();
-    const registerUseCase = new RegisterUsecase(userRepo);
-
+    const registerUseCase = FactoriesregisterUseCase();
     await registerUseCase.execute({
       email,
       password,

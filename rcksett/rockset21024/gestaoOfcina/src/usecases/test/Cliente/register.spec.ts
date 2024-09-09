@@ -202,36 +202,37 @@ describe("Register Usecase", () => {
 
   it("deve associar revisões ao cliente corretamente", async () => {
     const clienteId = "cliente-id";
-    const revisoes = [
-      {
-        id: "revisao1",
-        placaDoCarro: "XYZ1234",
-        dataDaRevisao: new Date("2014-01-01"),
-        dataDaProximaRevisao: undefined,
-        mensagemPredefinida: "ola cliente",
-        carroId: "carro1",
-        clienteId: clienteId,
-      }
+    const revisoess = [
+        {
+            id: "revisao1",
+            placaDoCarro: "XYZ1234",
+            dataDaRevisao: new Date("2014-01-01"),
+            dataDaProximaRevisao: undefined,
+            mensagemPredefinida: "ola cliente",
+            carroId: "carro1",
+            clienteId: clienteId,
+        }
     ];
 
     const { user } = await sut.execute({
-      email: "cliente@exemplo.com",
-      nome: "Cliente Teste",
-      password: "senha123",
-      telefone: "11999999999",
-      cpf: "08390763125",
-      dataDeNascimento: new Date("2014-01-01"),
-      dataDeUltimaRevisao: new Date(),
-      revisoes: revisoes,
-      id: "cliente-id",
-      tipo: TipoCliente.COMUM,  // Inclua o tipo
+        email: "cliente@exemplo.com",
+        nome: "Cliente Teste",
+        password: "senha123",
+        telefone: "11999999999",
+        cpf: "08390763125",
+        dataDeNascimento: new Date("2014-01-01"),
+        dataDeUltimaRevisao: new Date(),
+        revisoes: revisoess,
+        id: "cliente-id",
+        tipo: TipoCliente.COMUM,
     });
 
     expect(user).toHaveProperty("id");
     expect(user.id).toBe(clienteId);
 
-    const createdRevisao = user.revisoes?.[0];
-    expect(createdRevisao).toHaveProperty("clienteId", clienteId);
-    expect(createdRevisao).toHaveProperty("carroId", "carro1");
-  });
+    const createdRevisao = user.revisoes;
+    expect(createdRevisao).toHaveLength(revisoess.length);
+    expect(createdRevisao[0]).toHaveProperty("clienteId", clienteId);
+    expect(createdRevisao[0]).toHaveProperty("carroId", "carro1");
+});
 });

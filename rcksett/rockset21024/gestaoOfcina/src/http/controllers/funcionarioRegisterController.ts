@@ -1,9 +1,8 @@
 import { FastifyRequest, FastifyReply } from "fastify";
 import {FuncionarioInterfaceSchema} from "@/domain/usecases/zodOficina"
-import {FuncionariosRepositories} from "@/repositories/implements/funcionarioRepositories"
-import {FuncionariosUseCase} from "@/usecases/funcionarios/useCaseFuncionarios"
 import { AppError } from "@/utils/AppError";
 import { TipoFuncionario } from "@/domain/usecases/IRegisterUser";
+import { FactoriesfuncionariosUseCase } from "@/usecases/factories/make-funcionario-ussecase";
 
 
 
@@ -22,8 +21,7 @@ export class FuncionarioController {
             tipo,
             username,
           } = FuncionarioInterfaceSchema.parse(req.body);
-          const funcionarioRepository = new FuncionariosRepositories();
-          const funcionariosUseCase = new FuncionariosUseCase(funcionarioRepository);
+          const funcionariosUseCase = FactoriesfuncionariosUseCase()
        const user =   await funcionariosUseCase.execulte({
             email,
             senha,

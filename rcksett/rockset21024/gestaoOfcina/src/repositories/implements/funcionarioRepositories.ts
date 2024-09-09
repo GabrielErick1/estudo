@@ -1,12 +1,9 @@
 import { FuncionarioInterface } from "@/domain/usecases/IRegisterUser";
-import { ICreateFuncionarios } from "../Ifuncionarios";
+import { ICreateFuncionarios, IUser } from "../Ifuncionarios";
 import { prisma } from "@/lib/prisma";
 
 export class FuncionariosRepositories implements ICreateFuncionarios {
-    FindByUsername(username: string): Promise<FuncionarioInterface | null> {
-        throw new Error("Method not implemented.");
-    }
-    async create(data: FuncionarioInterface): Promise<FuncionarioInterface> {
+       async create(data: FuncionarioInterface): Promise<FuncionarioInterface> {
         const user = await prisma.funcionario.create({
             data: {
                 nome: data.nome,

@@ -28,7 +28,7 @@ export class PrismaUserRepository implements InterfaceAccount {
           createMany: {
             data: data.carros.map(carro => ({
               ...carro,
-              clienteId: data.id, // Ajuste conforme o relacionamento
+              clienteId: data.id, 
             })),
           },
         } : undefined,

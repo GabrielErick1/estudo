@@ -1,6 +1,6 @@
 import { Cliente } from "@prisma/client";
 import { InterfaceAccount } from "../IUserRepository";
-import { RegisterInterface } from "@/domain/usecases/IRegisterUser";
+import { RegisterInterface, TipoCliente } from "@/domain/usecases/IRegisterUser";
 
 export class RepositoryInMemory implements InterfaceAccount {
   private items: RegisterInterface[] = [];
@@ -15,13 +15,12 @@ export class RepositoryInMemory implements InterfaceAccount {
       cpf: data.cpf,
       dataDeNascimento: data.dataDeNascimento,
       dataDeUltimaRevisao: data.dataDeUltimaRevisao,
-      placaDoCarro: data.placaDoCarro,
-      tipo: "COMUM",
+      tipo: TipoCliente.COMUM,
       clienteCadastrador: data.clienteCadastrador || undefined,
       criadoPorId: data.criadoPorId || undefined,
       carros: data.carros ?? [],
       ordensDeServico: data.ordensDeServico ?? [],
-      revisoes: data.revisoes ?? [],
+      revisoes: data.revisoes,
     };
 
     this.items.push(user);
