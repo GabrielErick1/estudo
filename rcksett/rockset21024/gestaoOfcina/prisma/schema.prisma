@@ -22,7 +22,7 @@ model Cliente {
   ordensDeServico        OrdemDeServico[]
   revisoes               Revisao[]
   criadoPor              Funcionario?     @relation("ClienteCriadoPorFuncionario", fields: [criadoPorId], references: [id])
-  criadoPorId            String?
+  criadoPorId            String? // Torna o campo opcional
   funcionariosExecutores Funcionario[]    @relation("ServicosExecutadosPorFuncionarios")
   notificacoes           Notificacao[]
 
@@ -30,21 +30,24 @@ model Cliente {
 }
 
 model Funcionario {
-  id                 String           @id @default(uuid())
-  nome               String
-  username           String           @unique
-  cpf                String           @unique
-  dataDeNascimento   DateTime
-  email              String           @unique
-  senha              String
-  telefone           String?
-  tipo               TipoFuncionario
-  clientesCriados    Cliente[]        @relation("ClienteCriadoPorFuncionario")
-  ordensCriadas      OrdemDeServico[] @relation("OrdemDeServicoCriadaPorFuncionario")
-  ordensAprovadas    OrdemDeServico[] @relation("AprovadoPor")
-  pecasCriadas       Peca[]           @relation("PecasCriadas")
-  servicosExecutados Cliente[]        @relation("ServicosExecutadosPorFuncionarios")
-  ordensDeEstoque    OrdemEstoque[]   @relation("OrdemDeEstoqueGerenciadaPor")
+  id                  String           @id @default(uuid())
+  nome                String
+  username            String           @unique
+  cpf                 String           @unique
+  dataDeNascimento    DateTime
+  email               String           @unique
+  senha               String
+  telefone            String?
+  tipo                TipoFuncionario
+  clientesCriados     Cliente[]        @relation("ClienteCriadoPorFuncionario")
+  ordensCriadas       OrdemDeServico[] @relation("OrdemDeServicoCriadaPorFuncionario")
+  ordensAprovadas     OrdemDeServico[] @relation("AprovadoPor")
+  pecasCriadas        Peca[]           @relation("PecasCriadas")
+  servicosExecutados  Cliente[]        @relation("ServicosExecutadosPorFuncionarios")
+  ordensDeEstoque     OrdemEstoque[]   @relation("OrdemDeEstoqueGerenciadaPor")
+  criadoPor           Funcionario?     @relation("FuncionarioCriadoPorFuncionario", fields: [criadoPorId], references: [id])
+  criadoPorId         String?
+  funcionariosCriados Funcionario[]    @relation("FuncionarioCriadoPorFuncionario")
 
   @@map("funcionarios")
 }

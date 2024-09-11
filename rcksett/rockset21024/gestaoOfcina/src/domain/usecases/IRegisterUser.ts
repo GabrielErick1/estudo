@@ -32,22 +32,26 @@ export enum TipoNotificacao {
 }
 
 
+
+
+
 export interface RegisterInterface {
   id?: string;
   nome: string;
+  telefone?: string;
   email: string;
-  password: string;
   cpf?: string;
   cnpj?: string;
   dataDeNascimento?: Date;
-  dataDeUltimaRevisao?: Date;
-  clienteCadastrador?: string;
-  telefone?: string;
+  password: string;
   tipo?: TipoCliente;
-  criadoPorId?: string;
-  carros?: CarroInterface[] | undefined;
-  ordensDeServico?: OrdemDeServicoInterface[] | undefined;
-  revisoes?: RevisaoInterface[] | undefined;
+  clienteCadastrador?: string;
+  carros?: CarroInterface[]; 
+  ordensDeServico?: OrdemDeServicoInterface[]; 
+  revisoes?: RevisaoInterface[]; 
+  criadoPorId?: string; // ID opcional do criador
+  criadoPor?: FuncionarioInterface; // Funcionario criador opcional
+  funcionariosExecutores?: FuncionarioInterface[];
 }
 
 export interface CarroInterface {
@@ -105,17 +109,20 @@ export interface FuncionarioInterface {
   nome: string;
   username: string;
   cpf: string;
+  codigoRegistro?: string;
   dataDeNascimento: Date;
   telefone?: string;
   email: string;
   senha: string;
   tipo: TipoFuncionario;
-  clientesCriados?: RegisterInterface[]; 
+  clientesCriados?: RegisterInterface[]; // Relacionamento com clientes criados
   ordensCriadas?: OrdemDeServicoInterface[]; 
-  ordensAprovadas?: OrdemDeServicoInterface[]; 
-  pecasCriadas?: PecaInterface[]; 
+  ordensAprovadas?: OrdemDeServicoInterface[];
+  pecasCriadas?: PecaInterface[];
   servicosExecutados?: RegisterInterface[]; 
-  ordensDeEstoque?: OrdemEstoqueInterface[]; 
+  ordensDeEstoque?: OrdemEstoqueInterface[];
+  criadoPorId?: string; // ID opcional do criador
+  criadoPor?: FuncionarioInterface; // Funcionario criador opcional 
 }
 
 export interface PecaInterface {

@@ -2,7 +2,7 @@ import { FastifyReply, FastifyRequest } from 'fastify';
 import { z } from 'zod'; 
 import {RegisterInterfaceSchema} from "@/domain/usecases/zodOficina"
 import { AppError } from '@/utils/AppError';
-import { OrdemDeServicoInterface, RevisaoInterface, TipoCliente } from '@/domain/usecases/IRegisterUser';
+import { CarroInterface, OrdemDeServicoInterface, RevisaoInterface } from '@/domain/usecases/IRegisterUser';
 import { FactoriesregisterUseCase } from '@/usecases/factories/make.register-usecase-cliente';
 
 export const Register = async (req: FastifyRequest, res: FastifyReply) => {
@@ -82,7 +82,7 @@ export const Register = async (req: FastifyRequest, res: FastifyReply) => {
       dataDeNascimento: dataDeNascimento ?? undefined,
       clienteCadastrador: clienteCadastrador ?? undefined,
       criadoPorId: criadoPorId ?? undefined,
-      carros: carros ?? [], 
+      carros: carros as CarroInterface[] ?? [],
       ordensDeServico: ordensDeServico as OrdemDeServicoInterface[],
       revisoes: revisoes as RevisaoInterface[] ?? [],
     });
