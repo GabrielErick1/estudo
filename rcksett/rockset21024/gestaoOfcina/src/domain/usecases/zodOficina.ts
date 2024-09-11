@@ -1,4 +1,4 @@
-import { string, z } from 'zod';
+import { z } from 'zod';
 
 // Função para analisar datas
 const parseDate = (date: any): Date | null => {
@@ -7,12 +7,12 @@ const parseDate = (date: any): Date | null => {
 };
 
 // Schema de data personalizada
-const DateSchema = z.custom<Date | null>(value => {
-  return value === null || !isNaN(new Date(value).getTime());
-}, {
-  message: "Invalid date format"
-}).transform(parseDate);
-
+const DateSchema = z.custom<Date | null>(
+  (value) => value === null || !isNaN(new Date(value).getTime()),
+  {
+    message: "Invalid date format",
+  }
+).transform(parseDate);
 
 // Enum Schemas
 export const TipoClienteSchema = z.enum(['COMUM']);
@@ -35,7 +35,7 @@ export const RegisterInterfaceSchema = z.object({
   clienteCadastrador: z.string().optional(),
   telefone: z.string().optional(),
   tipo: TipoClienteSchema.optional(),
-  criadoPorId: z.string().optional(),
+  criadoPorId: z.string().optional(), // ID do criador
 
   carros: z.array(z.object({
     id: z.string().optional(),
@@ -46,7 +46,7 @@ export const RegisterInterfaceSchema = z.object({
     revisoes: z.array(z.object({
       id: z.string().optional(),
       placaDoCarro: z.string(),
-      dataDaRevisao: z.date(),
+      dataDaRevisao: DateSchema,
       dataDaProximaRevisao: z.date().optional(),
       mensagemPredefinida: z.string().optional(),
       carroId: z.string(),
@@ -64,7 +64,7 @@ export const RegisterInterfaceSchema = z.object({
     dataDeRealizacao: z.date(),
     dataDeVencimento: z.date(),
     clienteId: z.string(),
-    criadoPorId: z.string(),
+    criadoPorId: z.string(), // ID do criador da ordem
     aprovado: z.boolean(),
     aprovadoPorId: z.string().optional(),
     pagamentos: z.array(z.object({
@@ -120,7 +120,7 @@ export const OrdemDeServicoInterfaceSchema = z.object({
   dataDeRealizacao: z.date(),
   dataDeVencimento: z.date(),
   clienteId: z.string(),
-  criadoPorId: z.string(),
+  criadoPorId: z.string(), // ID do criador
   aprovado: z.boolean(),
   aprovadoPorId: z.string().optional(),
   pagamentos: z.array(z.object({
@@ -162,12 +162,22 @@ export const OrdemEstoqueInterfaceSchema = z.object({
   aprovadoPorId: z.string().optional(),
 });
 
+const DateSchemas = z.string().transform((value) => {
+  const date = new Date(value);
+  if (isNaN(date.getTime())) {
+    throw new Error('Invalid date');
+  }
+  return date;
+});
+
+// Definição do schema de FuncionarioInterface
 export const FuncionarioInterfaceSchema = z.object({
   id: z.string().optional(),
   nome: z.string(),
   username: z.string(),
   cpf: z.string(),
-  dataDeNascimento: z.date(),
+  codigoRegistro: z.string().optional(),
+  dataDeNascimento: DateSchemas, // Usa o DateSchema para transformar a string em Date
   email: z.string().email(),
   telefone: z.string().optional(),
   senha: z.string(),
@@ -181,7 +191,7 @@ export const FuncionarioInterfaceSchema = z.object({
     tipo: z.string(),
     valor: z.number(),
     quantidade: z.number(),
-    criadoPorId: z.string(),
+    criadoPorId: z.string(), // ID do criador da peça
   })).optional(),
   servicosExecutados: z.array(RegisterInterfaceSchema).optional(),
   ordensDeEstoque: z.array(OrdemEstoqueInterfaceSchema).optional(),
@@ -193,7 +203,7 @@ export const PecaInterfaceSchema = z.object({
   tipo: z.string(),
   valor: z.number(),
   quantidade: z.number(),
-  criadoPorId: z.string(),
+  criadoPorId: z.string(), // ID do criador da peça
 });
 
 export const ServicoInterfaceSchema = z.object({
