@@ -9,6 +9,7 @@ export class FuncionariosRepositories implements ICreateFuncionarios {
                 nome: data.nome,
                 email: data.email,
                 cpf: data.cpf,
+                telefone: data.telefone,
                 tipo: data.tipo,
                 dataDeNascimento: data.dataDeNascimento,
                 senha: data.senha,
