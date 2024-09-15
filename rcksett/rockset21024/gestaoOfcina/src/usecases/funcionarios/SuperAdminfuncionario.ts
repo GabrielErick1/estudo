@@ -1,7 +1,8 @@
 import { FuncionariosRepositories } from "@/repositories/implements/funcionarioRepositories";
 import { FuncionarioInterface, TipoFuncionario } from "@/domain/usecases/IRegisterUser";
 import { AppError } from "@/utils/AppError";
-// Definir o tipo padrão como SUPER_ADMIN se não houver código de registro
+
+
 
 export class CadastroFuncionarioComCodigoUseCase {
     private codigoPermitido = "930899"; // O código específico que você fornece
