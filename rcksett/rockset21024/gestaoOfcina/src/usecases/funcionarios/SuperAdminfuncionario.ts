@@ -15,11 +15,22 @@ export class CadastroFuncionarioComCodigoUseCase {
             throw new AppError("Código de registro inválido para Super Admin invalido", 403);
         }
         
+        // Verificar se o username já está cadastrado
+        const existUsername = await this.repository.findByUsername(data.username);
+        if (existUsername) {
+            throw new AppError("Username já cadastrado", 400);
+        }
+        
+        // Verificar se o email já está cadastrado
+        const existEmail = await this.repository.findByEmail(data.email);
+        if (existEmail) {
+            throw new AppError("Email já cadastrado", 400);
+        }
 
         // Definir o tipo padrão como SUPER_ADMIN se não houver código de registro
         const funcionarioCriado: FuncionarioInterface = {
             ...data,
-            tipo: TipoFuncionario.SUPER_ADMIN, // Forçar o tipo como SUPER_ADMIN
+            tipo: data.tipo, 
         };
 
         // Persistir o novo funcionário no banco de dados
