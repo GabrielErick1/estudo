@@ -22,13 +22,11 @@ export class FuncionariosUseCase {
                 throw new AppError("Super Admin não pode criar outro Super Admin", 403);
             }
 
-            // Se o tipo do novo funcionário não for super_admin, ele pode ser criado
             const funcionarioCriado: FuncionarioInterface = {
                 ...data,
                 criadoPorId: criador.id, // Associar o ID do criador
             };
 
-            // Persistir o novo funcionário no banco de dados
             const result = await this.repository.create(funcionarioCriado);
             return result;
         }
@@ -48,31 +46,36 @@ export class FuncionariosUseCase {
             throw new AppError("Username já cadastrado", 400);
         }
 
-        // Adicionar o ID do criador ao funcionário sendo criado
         const funcionarioCriado: FuncionarioInterface = {
             ...data,
             criadoPorId: criador.id, // Associar o criador pelo ID
         };
 
-        // Persistir o novo funcionário no banco de dados
         const result = await this.repository.create(funcionarioCriado);
         return result;
     }
 
     private verificarPermissoes(tipoCriador: TipoFuncionario, tipoFuncionario: TipoFuncionario) {
+        // Somente Super Admin pode criar Moderador
+        if (tipoFuncionario === TipoFuncionario.MODERADOR && tipoCriador !== TipoFuncionario.SUPER_ADMIN) {
+            throw new AppError("Apenas Super Admin pode criar Moderadores", 403);
+        }
+
         // Permissões ajustadas para permitir criação por super_admin
         if (tipoCriador === TipoFuncionario.SUPER_ADMIN) {
-            return; // Super admin pode criar qualquer tipo
+            return; // Super admin pode criar qualquer tipo, exceto outro super_admin (verificado anteriormente)
+        }
+
+        // Admin só pode criar RH, Estoquista e Funcionário
+        if (tipoCriador === TipoFuncionario.ADMIN) {
+            if (![TipoFuncionario.RH, TipoFuncionario.ESTOQUE, TipoFuncionario.FUNCIONARIO].includes(tipoFuncionario)) {
+                throw new AppError("Admin só pode criar RH, Estoquistas ou Funcionários", 403);
+            }
         }
 
         if (tipoCriador === TipoFuncionario.MODERADOR && 
             (tipoFuncionario === TipoFuncionario.SUPER_ADMIN || tipoFuncionario === TipoFuncionario.MODERADOR)) {
             throw new AppError("Moderador não pode criar Super Admin ou Moderador", 403);
-        }
-
-        if (tipoCriador === TipoFuncionario.ADMIN && 
-            (tipoFuncionario === TipoFuncionario.SUPER_ADMIN || tipoFuncionario === TipoFuncionario.MODERADOR)) {
-            throw new AppError("Admin não pode criar Super Admin ou Moderador", 403);
         }
 
         if (tipoCriador === TipoFuncionario.RH && 

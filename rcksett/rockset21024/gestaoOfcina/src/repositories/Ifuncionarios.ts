@@ -2,7 +2,7 @@ import {FuncionarioInterface} from "@/domain/usecases/IRegisterUser"
 
 export interface IUser {
     email?: string
-    password?: string
+    senha?: string
     username?: string
 }
 

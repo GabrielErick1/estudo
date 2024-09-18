@@ -15,26 +15,25 @@ class AuthController {
             });
         }
 
-        const { email, password, username } = parsed.data;
+        const { email, senha, username } = parsed.data;
 
         try {
             const useCaseAuthenticate = FactoriesUseCaseAuthenticate()
-            const usecase = await useCaseAuthenticate.execute({ email, password, username });
+            const usecase = await useCaseAuthenticate.execute({ email, senha, username });
 
             return reply.status(200).send({
                 message: "Autenticação bem-sucedida.",
                 token: usecase?.token,
                 user: usecase?.user
             });
-        } catch (error) {
-            if (error instanceof AppError) {
-                return reply.status(error.statusCode).send({
-                    message: error.message,
-                });
+        } catch (err) {
+            if (err instanceof AppError) {
+                console.log(err);
+                
+                return reply.status(err.statusCode).send({ message: err.message });
             } else {
-                return reply.status(401).send({
-                    message: "E-mail, username ou senha incorretos.",
-                });
+                console.log(err);
+                return reply.status(500).send({ message: "Internal server error" });
             }
         }
     }
