@@ -19,12 +19,12 @@ describe('UseCaseAuthenticate', () => {
         process.env.JWT_SECRET = JWT_SECRET;
 
         // Adicionar um funcionário ao repositório fake
-        const passwordHash = bcrypt.hashSync('password123', 10);
+        const senhaHash = bcrypt.hashSync('senha123', 10);
         repository.create({
             id: '1',
             email: 'test@example.com',
             username: 'testuser',
-            senha: passwordHash,
+            senha: senhaHash,
             nome: 'Teste',
             cpf: '12345678901',
             dataDeNascimento: new Date('1990-01-01'),
@@ -35,7 +35,7 @@ describe('UseCaseAuthenticate', () => {
     it('deve autenticar com sucesso usando e-mail e senha corretos', async () => {
         const result = await useCase.execute({
             email: 'test@example.com',
-            password: 'password123',
+            senha: 'senha123',
         });
 
         expect(result).not.toBeNull();
@@ -50,7 +50,7 @@ describe('UseCaseAuthenticate', () => {
     it('deve autenticar com sucesso usando nome de usuário e senha corretos', async () => {
         const result = await useCase.execute({
             username: 'testuser',
-            password: 'password123',
+            senha: 'senha123',
         });
 
         expect(result).not.toBeNull();
@@ -65,20 +65,20 @@ describe('UseCaseAuthenticate', () => {
     it('deve lançar um erro se o e-mail estiver incorreto', async () => {
         await expect(useCase.execute({
             email: 'wrong@example.com',
-            password: 'password123',
+            senha: 'senha123',
         })).rejects.toThrowError(new AppError('E-mail ou senha incorretos.', 409));
     });
 
     it('deve lançar um erro se a senha estiver incorreta', async () => {
         await expect(useCase.execute({
             email: 'test@example.com',
-            password: 'wrongpassword',
-        })).rejects.toThrowError(new AppError('login ou Senha incorreta.', 409));
+            senha: 'wrongsenha',
+        })).rejects.toThrowError(new AppError('Login ou senha incorretos.', 409));
     });
 
     it('deve lançar um erro se nenhum e-mail ou nome de usuário for fornecido', async () => {
         await expect(useCase.execute({
-            password: 'password123',
+            senha: 'senha123',
         })).rejects.toThrowError(new AppError('É necessário fornecer um email ou username para autenticação.', 409));
     });
 });
