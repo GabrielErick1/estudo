@@ -14,6 +14,8 @@ class UseCaseAuthenticate {
         // Verifica se foi fornecido email ou username
         if (data.email) {
             user = await this.repository.findByEmail(data.email);
+            console.log(data);
+            
             if (!user) {
                 throw new AppError("E-mail ou senha incorretos.", 409);
             }
@@ -25,7 +27,8 @@ class UseCaseAuthenticate {
         } else {
             throw new AppError("É necessário fornecer um email ou username para autenticação.", 409);
         }
-
+        console.log(user);
+        
         // Verificar a senha utilizando bcrypt
         const issenhaValid = await bcrypt.compare(data.senha ?? "", user.senha);
         if (!issenhaValid) {
