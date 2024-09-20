@@ -6,11 +6,23 @@ export class FuncionariosUseCase {
     constructor(private repository: FuncionariosRepositories) {}
 
     async execute(data: FuncionarioInterface, criador: FuncionarioInterface): Promise<FuncionarioInterface> {
+
+        const existEmail = await this.repository.findByEmail(data.email);
+        if (existEmail) {
+            throw new AppError("Email já cadastrado", 400);
+        }
+
+        // Verificar se o username já está registrado
+        const existUsername = await this.repository.findByUsername(data.username);
+        if (existUsername) {
+            throw new AppError("Username já cadastrado", 400);
+        }
+        
         // Verificar se criador e data são válidos
         if (!criador || !data) {
             throw new AppError("Dados inválidos", 400);
         }
-
+        
         if (!criador.tipo || !data.tipo) {
             throw new AppError("Tipo do criador ou do funcionário não definido", 400);
         }
@@ -34,17 +46,8 @@ export class FuncionariosUseCase {
         // Verificar permissões para criação de outros tipos de funcionários
         this.verificarPermissoes(criador.tipo, data.tipo);
 
-        // Verificar se o email já está registrado
-        const existEmail = await this.repository.findByEmail(data.email);
-        if (existEmail) {
-            throw new AppError("Email já cadastrado", 400);
-        }
-
-        // Verificar se o username já está registrado
-        const existUsername = await this.repository.findByUsername(data.username);
-        if (existUsername) {
-            throw new AppError("Username já cadastrado", 400);
-        }
+        
+      
 
         const funcionarioCriado: FuncionarioInterface = {
             ...data,

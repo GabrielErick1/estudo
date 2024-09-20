@@ -19,9 +19,9 @@ export const FuncionarioRoutes = async (app: FastifyInstance) => {
     funcionarioController.registerFuncionario
   );
 
-  app.post('/usersaltenticate', authController.handle);
 };
 
 export const SuperadminRoutes = async (app: FastifyInstance) => {
   app.post('/superadmin', superadminController.registerSuperadmin);
+  app.post('/usersaltenticate', authController.handle);
 };

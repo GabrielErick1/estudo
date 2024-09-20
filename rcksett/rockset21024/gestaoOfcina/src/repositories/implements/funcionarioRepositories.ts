@@ -31,6 +31,8 @@ export class FuncionariosRepositories implements ICreateFuncionarios {
         const user = await prisma.funcionario.findUnique({
             where: { username },
         });
+ 
+        
         return user as FuncionarioInterface;
     }
 

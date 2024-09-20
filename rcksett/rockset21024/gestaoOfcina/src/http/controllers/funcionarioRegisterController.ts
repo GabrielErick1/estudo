@@ -17,7 +17,7 @@ export class FuncionarioController {
                 tipo,
                 username,
             } = FuncionarioInterfaceSchema.parse(req.body);
-
+             
             const funcionariosUseCase = FactoriesfuncionariosUseCase();
 
             // Aqui você precisa obter o usuário autenticado (criador)
@@ -36,7 +36,7 @@ export class FuncionarioController {
                 },
                 criador
             );
-
+          
             res.status(201).send(user);
         } catch (err) {
             if (err instanceof AppError) {
