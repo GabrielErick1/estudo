@@ -1,0 +1,218 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Cliente {
+  id                     String           @id @default(uuid())
+  nome                   String
+  telefone               String?
+  email                  String           @unique
+  cpf                    String?          @unique
+  cnpj                   String?          @unique
+  dataDeNascimento       DateTime?
+  password               String
+  tipo                   TipoCliente      @default(COMUM)
+  clienteCadastrador     String?
+  carros                 Carro[]
+  ordensDeServico        OrdemDeServico[]
+  revisoes               Revisao[]
+  criadoPor              Funcionario?     @relation("ClienteCriadoPorFuncionario", fields: [criadoPorId], references: [id])
+  criadoPorId            String? // Torna o campo opcional
+  funcionariosExecutores Funcionario[]    @relation("ServicosExecutadosPorFuncionarios")
+  notificacoes           Notificacao[]
+
+  @@map("clientes")
+}
+
+model Funcionario {
+  id                  String           @id @default(uuid())
+  nome                String
+  username            String           @unique
+  cpf                 String           @unique
+  dataDeNascimento    DateTime
+  email               String           @unique
+  senha               String
+  telefone            String?
+  tipo                TipoFuncionario
+  clientesCriados     Cliente[]        @relation("ClienteCriadoPorFuncionario")
+  ordensCriadas       OrdemDeServico[] @relation("OrdemDeServicoCriadaPorFuncionario")
+  ordensAprovadas     OrdemDeServico[] @relation("AprovadoPor")
+  pecasCriadas        Peca[]           @relation("PecasCriadas")
+  servicosExecutados  Cliente[]        @relation("ServicosExecutadosPorFuncionarios")
+  ordensDeEstoque     OrdemEstoque[]   @relation("OrdemDeEstoqueGerenciadaPor")
+  criadoPor           Funcionario?     @relation("FuncionarioCriadoPorFuncionario", fields: [criadoPorId], references: [id])
+  criadoPorId         String?
+  funcionariosCriados Funcionario[]    @relation("FuncionarioCriadoPorFuncionario")
+
+  @@map("funcionarios")
+}
+
+model Carro {
+  id        String    @id @default(uuid())
+  placa     String    @unique
+  modelo    String
+  ano       Int
+  cliente   Cliente   @relation(fields: [clienteId], references: [id])
+  clienteId String
+  revisoes  Revisao[]
+
+  @@map("carros")
+}
+
+model Servico {
+  id              String           @id @default(uuid())
+  tipoDeServico   String
+  valor           Decimal
+  ordensDeServico OrdemDeServico[]
+  Promocao        Promocao[]
+
+  @@map("servicos")
+}
+
+model Peca {
+  id              String           @id @default(uuid())
+  nome            String
+  tipo            String
+  valor           Decimal
+  quantidade      Int
+  criadoPor       Funcionario      @relation("PecasCriadas", fields: [criadoPorId], references: [id])
+  criadoPorId     String
+  ordensDeServico OrdemDeServico[] @relation("PecasUsadasNasOrdens")
+
+  @@map("pecas")
+}
+
+model OrdemDeServico {
+  id                String                  @id @default(uuid())
+  placaDoCarro      String
+  servicosPrestados String
+  cpf               String
+  valorTotal        Float
+  dataDeRealizacao  DateTime
+  dataDeVencimento  DateTime
+  status            StatusOrdem             @default(EM_ANDAMENTO)
+  cliente           Cliente                 @relation(fields: [clienteId], references: [id])
+  clienteId         String
+  criadoPor         Funcionario             @relation("OrdemDeServicoCriadaPorFuncionario", fields: [criadoPorId], references: [id])
+  criadoPorId       String
+  aprovado          Boolean                 @default(false)
+  aprovadoPor       Funcionario?            @relation("AprovadoPor", fields: [aprovadoPorId], references: [id])
+  aprovadoPorId     String?
+  pecasUsadas       Peca[]                  @relation("PecasUsadasNasOrdens")
+  pagamentos        OrdemServicoPagamento[]
+  servico           Servico?                @relation(fields: [servicoId], references: [id])
+  servicoId         String?
+  ordemDeEstoque    OrdemEstoque?
+  Notificacao       Notificacao[]
+
+  @@map("ordens_de_servico")
+}
+
+model OrdemEstoque {
+  id               String          @id @default(uuid())
+  ordemDeServico   OrdemDeServico? @relation(fields: [ordemDeServicoId], references: [id])
+  ordemDeServicoId String?         @unique
+  pecaAprovada     Boolean         @default(false)
+  mensagem         String?
+  aprovadoPor      Funcionario?    @relation("OrdemDeEstoqueGerenciadaPor", fields: [aprovadoPorId], references: [id])
+  aprovadoPorId    String?
+
+  @@map("ordem_estoque")
+}
+
+model Revisao {
+  id                   String        @id @default(uuid())
+  placaDoCarro         String
+  dataDaRevisao        DateTime
+  dataDaProximaRevisao DateTime?
+  mensagemPredefinida  String?
+  carro                Carro         @relation(fields: [carroId], references: [id])
+  carroId              String
+  cliente              Cliente?      @relation(fields: [clienteId], references: [id])
+  clienteId            String?
+  Notificacao          Notificacao[]
+
+  @@map("revisoes")
+}
+
+model Pagamento {
+  id               String                  @id @default(uuid())
+  formaDePagamento FormaPagamento
+  ordens           OrdemServicoPagamento[]
+
+  @@map("pagamentos")
+}
+
+model OrdemServicoPagamento {
+  id               String         @id @default(uuid())
+  ordemDeServicoId String
+  pagamentoId      String
+  ordemDeServico   OrdemDeServico @relation(fields: [ordemDeServicoId], references: [id])
+  pagamento        Pagamento      @relation(fields: [pagamentoId], references: [id])
+
+  @@map("ordem_servico_pagamento")
+}
+
+model Notificacao {
+  id             String          @id @default(uuid())
+  tipo           TipoNotificacao
+  mensagem       String
+  enviadoEm      DateTime        @default(now())
+  cliente        Cliente         @relation(fields: [clienteId], references: [id])
+  clienteId      String
+  revisaoId      String?
+  ordemServicoId String?
+  promocaoId     String?
+  promocao       Promocao?       @relation(fields: [promocaoId], references: [id])
+  revisao        Revisao?        @relation(fields: [revisaoId], references: [id])
+  ordemServico   OrdemDeServico? @relation(fields: [ordemServicoId], references: [id])
+
+  @@map("notificacoes")
+}
+
+model Promocao {
+  id           String        @id @default(uuid())
+  descricao    String
+  desconto     Float
+  servico      Servico?      @relation(fields: [servicoId], references: [id])
+  servicoId    String?
+  notificacoes Notificacao[]
+
+  @@map("promocoes")
+}
+
+enum TipoCliente {
+  COMUM
+}
+
+enum TipoFuncionario {
+  super_admin
+  moderador
+  admin
+  rh
+  estoque
+  funcionario
+}
+
+enum FormaPagamento {
+  DINHEIRO
+  CARTAO
+  PIX
+}
+
+enum StatusOrdem {
+  EM_ANDAMENTO
+  CONCLUIDA
+  CANCELADA
+}
+
+enum TipoNotificacao {
+  REVISAO
+  ORDEM_SERVICO
+  PROMOCAO
+}

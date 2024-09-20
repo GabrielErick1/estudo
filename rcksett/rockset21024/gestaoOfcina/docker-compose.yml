@@ -1,0 +1,36 @@
+services:
+  db:
+    image: bitnami/postgresql:latest
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_USER: eldongestao
+      POSTGRES_PASSWORD: 93089946Biel-+
+      POSTGRES_DB: gestao
+    ports:
+      - '5432:5432'
+    volumes:
+      - 'db_data:/bitnami/postgresql'
+    networks:
+      - app-network
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: api-pgadmin-1
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: bieelerick9876@gmail.com
+      PGADMIN_DEFAULT_PASSWORD: 1234567
+    ports:
+      - '16543:80'
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  db_data:

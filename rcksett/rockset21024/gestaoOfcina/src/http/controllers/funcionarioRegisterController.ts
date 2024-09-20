@@ -17,12 +17,11 @@ export class FuncionarioController {
                 tipo,
                 username,
             } = FuncionarioInterfaceSchema.parse(req.body);
-
+             console.log(cpf);
             const funcionariosUseCase = FactoriesfuncionariosUseCase();
 
             // Aqui você precisa obter o usuário autenticado (criador)
             const criador = req.user as FuncionarioInterface; // Supondo que o `req.user` tenha os dados do criador
-
             const user = await funcionariosUseCase.execute(
                 {
                     email,
@@ -36,7 +35,8 @@ export class FuncionarioController {
                 },
                 criador
             );
-
+            
+            
             res.status(201).send(user);
         } catch (err) {
             if (err instanceof AppError) {

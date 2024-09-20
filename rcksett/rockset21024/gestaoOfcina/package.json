@@ -12,7 +12,7 @@
     "typescript": "^5.5.4",
     "vite": "5.4.2",
     "vite-tsconfig-paths": "5.0.1",
-    "vitest": "^2.0.5"
+    "vitest": "2.0.5"
   },
   "name": "gestao-eldon",
   "description": "gestaoEldon",
@@ -40,6 +40,5 @@
     "test:ui": "vitest --ui"
   },
   "author": "gabriel",
-  "license": "ISC",
-  "keywords": []
+  "license": "ISC"
 }
