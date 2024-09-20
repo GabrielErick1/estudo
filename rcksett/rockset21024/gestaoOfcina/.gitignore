@@ -1,0 +1,4 @@
+temp/app.db
+node_modules
+.idea
+.env

@@ -3,14 +3,6 @@ import { ICreateFuncionarios } from "../Ifuncionarios";
 import { prisma } from "@/lib/prisma";
 
 export class FuncionariosRepositories implements ICreateFuncionarios {
-    private banco = prisma;
-   async findByCpf(cpf: string): Promise<FuncionarioInterface | null> {
-        const existCpf = await this.banco.funcionario.findUnique({
-            where: { cpf }
-        });
-        return existCpf as FuncionarioInterface;
-    }
-
     async create(data: FuncionarioInterface): Promise<FuncionarioInterface> {
         const user = await prisma.funcionario.create({
             data: {
@@ -39,8 +31,6 @@ export class FuncionariosRepositories implements ICreateFuncionarios {
         const user = await prisma.funcionario.findUnique({
             where: { username },
         });
- 
-        
         return user as FuncionarioInterface;
     }
 
