@@ -1,12 +1,23 @@
 import { FuncionariosRepositories } from "@/repositories/implements/funcionarioRepositories";
 import { FuncionarioInterface, TipoFuncionario } from "@/domain/usecases/IRegisterUser";
 import { AppError } from "@/utils/AppError";
+import { hash } from "bcrypt";
 
 export class FuncionariosUseCase {
     constructor(private repository: FuncionariosRepositories) {}
 
-    async execute(data: FuncionarioInterface, criador: FuncionarioInterface): Promise<FuncionarioInterface> {
 
+    private async hashPassword(senha: string) {
+        const hashPassword = await hash(senha, 4)
+        return hashPassword;
+    }
+
+    async execute(data: FuncionarioInterface, criador: FuncionarioInterface): Promise<FuncionarioInterface> {
+        
+     
+        
+
+        const hashPassword = await this.hashPassword(data.senha)
         const existEmail = await this.repository.findByEmail(data.email);
         if (existEmail) {
             throw new AppError("Email já cadastrado", 400);
@@ -17,7 +28,12 @@ export class FuncionariosUseCase {
         if (existUsername) {
             throw new AppError("Username já cadastrado", 400);
         }
-        
+       // Verificar se o cpf já está registrado
+        const existCpf = await this.repository.findByCpf(data.cpf)
+        if (existCpf) {
+            throw new AppError("cpf já cadastrado", 400);
+        }
+
         // Verificar se criador e data são válidos
         if (!criador || !data) {
             throw new AppError("Dados inválidos", 400);
@@ -36,6 +52,7 @@ export class FuncionariosUseCase {
 
             const funcionarioCriado: FuncionarioInterface = {
                 ...data,
+                senha: hashPassword,
                 criadoPorId: criador.id, // Associar o ID do criador
             };
 
@@ -51,6 +68,7 @@ export class FuncionariosUseCase {
 
         const funcionarioCriado: FuncionarioInterface = {
             ...data,
+            senha: hashPassword,
             criadoPorId: criador.id, // Associar o criador pelo ID
         };
 
@@ -63,7 +81,7 @@ export class FuncionariosUseCase {
         if (tipoFuncionario === TipoFuncionario.MODERADOR && tipoCriador !== TipoFuncionario.SUPER_ADMIN) {
             throw new AppError("Apenas Super Admin pode criar Moderadores", 403);
         }
-
+     
         // Permissões ajustadas para permitir criação por super_admin
         if (tipoCriador === TipoFuncionario.SUPER_ADMIN) {
             return; // Super admin pode criar qualquer tipo, exceto outro super_admin (verificado anteriormente)
