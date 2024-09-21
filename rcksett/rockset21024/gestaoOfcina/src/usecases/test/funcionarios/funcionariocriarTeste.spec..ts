@@ -6,7 +6,7 @@ import { beforeEach, describe, it, expect } from "vitest";
 describe('FuncionariosUseCase', () => {
     let repository: FuncionariosRepositoryFake;
     let useCase: FuncionariosUseCase;
-
+     
     beforeEach(() => {
         repository = new FuncionariosRepositoryFake();
         useCase = new FuncionariosUseCase(repository);
@@ -131,6 +131,7 @@ describe('FuncionariosUseCase', () => {
 
         await expect(useCase.execute(newFuncionario, criador)).rejects.toThrowError("Username já cadastrado");
     });
+
     it('deve permitir um SUPER_ADMIN criar um MODERADOR', async () => {
         // Criar um SUPER_ADMIN
         const criador: FuncionarioInterface = {
