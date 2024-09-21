@@ -159,18 +159,20 @@ model OrdemServicoPagamento {
 }
 
 model Notificacao {
-  id             String          @id @default(uuid())
-  tipo           TipoNotificacao
-  mensagem       String
-  enviadoEm      DateTime        @default(now())
-  cliente        Cliente         @relation(fields: [clienteId], references: [id])
-  clienteId      String
-  revisaoId      String?
-  ordemServicoId String?
-  promocaoId     String?
-  promocao       Promocao?       @relation(fields: [promocaoId], references: [id])
-  revisao        Revisao?        @relation(fields: [revisaoId], references: [id])
-  ordemServico   OrdemDeServico? @relation(fields: [ordemServicoId], references: [id])
+  id               String          @id @default(uuid())
+  tipo             TipoNotificacao
+  mensagem         String
+  mensagemWhatsApp String? // Mensagem específica para WhatsApp
+  enviadoEm        DateTime        @default(now())
+  enviadoWhatsApp  Boolean         @default(false) // Status do envio para WhatsApp
+  cliente          Cliente         @relation(fields: [clienteId], references: [id])
+  clienteId        String
+  revisaoId        String?
+  ordemServicoId   String?
+  promocaoId       String?
+  promocao         Promocao?       @relation(fields: [promocaoId], references: [id])
+  revisao          Revisao?        @relation(fields: [revisaoId], references: [id])
+  ordemServico     OrdemDeServico? @relation(fields: [ordemServicoId], references: [id])
 
   @@map("notificacoes")
 }
