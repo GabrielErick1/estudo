@@ -2,37 +2,42 @@ import { FuncionarioInterface } from "@/domain/usecases/IRegisterUser";
 import { ICreateFuncionarios } from "../Ifuncionarios";
 
 export class FuncionariosRepositoryFake implements ICreateFuncionarios {
+    // Propriedade 'banco' adicionada para compatibilidade
+    private banco: any;
+
+    constructor() {
+        this.banco = {}; // Simula a existência de um "banco de dados" qualquer
+        this.data = [];
+    }
+
     private data: FuncionarioInterface[] = [];
 
     async create(data: FuncionarioInterface): Promise<FuncionarioInterface> {
-        // Simula a criação de um funcionário, adicionando à lista
         this.data.push(data);
         return data;
     }
 
     async findByEmail(email: string): Promise<FuncionarioInterface | null> {
-        // Simula a busca por email
         return this.data.find(user => user.email === email) || null;
     }
 
     async findByUsername(username: string): Promise<FuncionarioInterface | null> {
-        // Simula a busca por username
         return this.data.find(user => user.username === username) || null;
     }
 
+    async findByCpf(cpf: string): Promise<FuncionarioInterface | null> { 
+        return this.data.find(user => user.cpf === cpf) || null;
+    }
+
     async findAll(): Promise<FuncionarioInterface[]> {
-        // Retorna todos os funcionários
         return this.data;
     }
 
-    // Método opcional para testar casos de remoção e atualização, se necessário
     async findById(id: string): Promise<FuncionarioInterface | null> {
-        // Simula a busca por ID
         return this.data.find(user => user.id === id) || null;
     }
 
     async update(id: string, updates: Partial<FuncionarioInterface>): Promise<FuncionarioInterface | null> {
-        // Simula a atualização de um funcionário
         const index = this.data.findIndex(user => user.id === id);
         if (index === -1) return null;
 
@@ -41,7 +46,6 @@ export class FuncionariosRepositoryFake implements ICreateFuncionarios {
     }
 
     async delete(id: string): Promise<void> {
-        // Simula a remoção de um funcionário
         this.data = this.data.filter(user => user.id !== id);
     }
 }
