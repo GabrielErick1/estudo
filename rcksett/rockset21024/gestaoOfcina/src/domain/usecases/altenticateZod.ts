@@ -9,5 +9,10 @@ export const userSchema = z.object({
   path: ["email", "username"]
 });
 
+export const clientZod = z.object({
+  email: z.string().email(),
+  password: z.string().min(6)
+})
+
 
 type IUser = z.infer<typeof userSchema>;

@@ -4,6 +4,17 @@ import { RegisterInterface } from "@/domain/usecases/IRegisterUser";
 import { Cliente, TipoCliente } from "@prisma/client";
 
 export class PrismaUserRepository implements InterfaceAccount {
+  private repositories = prisma;
+  async FindByCnpj(cnpj: string): Promise<Cliente | null> {
+   return await this.repositories.cliente.findUnique({
+    where: {cnpj}
+  })
+  }
+ async FindByCpf(cpf: string): Promise<Cliente | null> {
+  return await this.repositories.cliente.findUnique({
+    where: {cpf}
+  })
+  }
   async CreateAccount(data: RegisterInterface): Promise<Cliente> {
     const ordensDeServicoData = data.ordensDeServico?.map(ordem => ({
       ...ordem,
@@ -23,33 +34,7 @@ export class PrismaUserRepository implements InterfaceAccount {
         clienteCadastrador: data.clienteCadastrador ?? null,
         criadoPorId: data.criadoPorId ?? null,
         tipo: data.tipo ?? TipoCliente.COMUM, // Define "COMUM" como padrão
-
-        carros: data.carros && data.carros.length > 0 ? {
-          createMany: {
-            data: data.carros.map(carro => ({
-              ...carro,
-              clienteId: data.id, 
-            })),
-          },
-        } : undefined,
-
-        ordensDeServico: ordensDeServicoData && ordensDeServicoData.length > 0 ? {
-          createMany: {
-            data: ordensDeServicoData,
-          },
-        } : undefined,
-
-        revisoes: data.revisoes && data.revisoes.length > 0 ? {
-          createMany: {
-            data: data.revisoes,
-          },
-        } : undefined,
-      },
-      include: {
-        ordensDeServico: true,
-        carros: true,
-        revisoes: true,
-      },
+      }
     });
   }
 

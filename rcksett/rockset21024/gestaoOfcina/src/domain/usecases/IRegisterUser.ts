@@ -34,32 +34,31 @@ export enum TipoNotificacao {
 
 
 
-
 export interface RegisterInterface {
   id?: string;
   nome: string;
-  telefone?: string;
+  telefone?: string | null;  // Permitir null
   email: string;
-  cpf?: string;
-  cnpj?: string;
-  dataDeNascimento?: Date;
+  cpf?: string | null;       // Permitir null
+  cnpj?: string | null;      // Permitir null
+  dataDeNascimento?: Date | null; // Permitir null
   password: string;
   tipo?: TipoCliente;
-  clienteCadastrador?: string;
   carros?: CarroInterface[]; 
   ordensDeServico?: OrdemDeServicoInterface[]; 
   revisoes?: RevisaoInterface[]; 
-  criadoPorId?: string; // ID opcional do criador
-  criadoPor?: FuncionarioInterface; // Funcionario criador opcional
+  criadoPorId?: string | null;  // Permitir null
+  criadoPor?: FuncionarioInterface | null;  // Permitir null
   funcionariosExecutores?: FuncionarioInterface[];
 }
+
 
 export interface CarroInterface {
   id?: string;
   placa: string;
   modelo: string;
   ano: number;
-  clienteId: string; 
+  clienteId?: string; 
   revisoes?: RevisaoInterface[]; 
 }
 

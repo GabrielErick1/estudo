@@ -21,13 +21,13 @@ async function authenticateSuperAdmin(request: FastifyRequest, reply: FastifyRep
         const decoded = jwt.verify(token, process.env.JWT_SECRET as string) as jwt.JwtPayload;
 
         // Busca o usuário no banco de dados
-        const user = await prisma.funcionario.findUnique({
+        const user = await prisma.cliente.findUnique({
             where: { id: decoded.id },
         });
 
         // Verifica se o usuário existe e se tem o tipo de super_admin
-        if (!user || user.tipo !== 'super_admin') {
-            throw new AppError("Acesso negado. Apenas super_admin podem acessar.", 403);
+        if (!user || user.tipo !== 'COMUM') {
+            throw new AppError("Acesso negado. Apenas Cliente podem acessar.", 403);
         }
 
         // Adiciona o usuário ao objeto de requisição para acessá-lo nas rotas

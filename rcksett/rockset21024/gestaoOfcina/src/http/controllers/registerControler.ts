@@ -63,11 +63,7 @@ export const Register = async (req: FastifyRequest, res: FastifyReply) => {
     cnpj,
     dataDeNascimento,
     telefone,
-    carros,
-    clienteCadastrador,
     criadoPorId,
-    ordensDeServico,
-    revisoes,
   } = RegisterInterfaceSchema.parse(req.body);
 
   try {
@@ -80,11 +76,7 @@ export const Register = async (req: FastifyRequest, res: FastifyReply) => {
       cnpj: cnpj ?? undefined,
       telefone: telefone?? undefined,
       dataDeNascimento: dataDeNascimento ?? undefined,
-      clienteCadastrador: clienteCadastrador ?? undefined,
       criadoPorId: criadoPorId ?? undefined,
-      carros: carros as CarroInterface[] ?? [],
-      ordensDeServico: ordensDeServico as OrdemDeServicoInterface[],
-      revisoes: revisoes as RevisaoInterface[] ?? [],
     });
 
     res.status(201).send({ message: "User registered successfully" });

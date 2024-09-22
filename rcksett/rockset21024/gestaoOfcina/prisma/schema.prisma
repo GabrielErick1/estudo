@@ -10,14 +10,13 @@ datasource db {
 model Cliente {
   id                     String           @id @default(uuid())
   nome                   String
-  telefone               String?
+  telefone               String?          @unique
   email                  String           @unique
   cpf                    String?          @unique
   cnpj                   String?          @unique
   dataDeNascimento       DateTime?
   password               String
   tipo                   TipoCliente      @default(COMUM)
-  clienteCadastrador     String?
   carros                 Carro[]
   ordensDeServico        OrdemDeServico[]
   revisoes               Revisao[]
@@ -205,6 +204,7 @@ enum FormaPagamento {
   DINHEIRO
   CARTAO
   PIX
+  BOLETO
 }
 
 enum StatusOrdem {

@@ -1,18 +1,13 @@
 import { z } from 'zod';
 
-// Função para analisar datas
-const parseDate = (date: any): Date | null => {
-  const parsedDate = new Date(date);
-  return isNaN(parsedDate.getTime()) ? null : parsedDate;
-};
 
-// Schema de data personalizada
-const DateSchema = z.custom<Date | null>(
-  (value) => value === null || !isNaN(new Date(value).getTime()),
-  {
-    message: "Invalid date format",
+const DateSchemas = z.string().transform((value) => {
+  const date = new Date(value);
+  if (isNaN(date.getTime())) {
+    throw new Error('Invalid date');
   }
-).transform(parseDate);
+  return date;
+});
 
 // Enum Schemas
 export const TipoClienteSchema = z.enum(['COMUM']);
@@ -28,13 +23,12 @@ export const RegisterInterfaceSchema = z.object({
   nome: z.string(),
   email: z.string().email(),
   password: z.string(),
-  dataDeNascimento: z.date().optional(),
+  dataDeNascimento: DateSchemas.optional(),
   cpf: z.string().optional(),
   cnpj: z.string().optional(),
   dataDeUltimaRevisao: z.date().optional(),
-  clienteCadastrador: z.string().optional(),
   telefone: z.string().optional(),
-  tipo: TipoClienteSchema.optional(),
+  tipo: TipoClienteSchema.default('COMUM'),
   criadoPorId: z.string().optional(), // ID do criador
 
   carros: z.array(z.object({
@@ -42,11 +36,11 @@ export const RegisterInterfaceSchema = z.object({
     placa: z.string(),
     modelo: z.string(),
     ano: z.number(),
-    clienteId: z.string(),
+    clienteId: z.string().optional(),
     revisoes: z.array(z.object({
       id: z.string().optional(),
       placaDoCarro: z.string(),
-      dataDaRevisao: DateSchema,
+      dataDaRevisao: DateSchemas,
       dataDaProximaRevisao: z.date().optional(),
       mensagemPredefinida: z.string().optional(),
       carroId: z.string(),
@@ -85,7 +79,7 @@ export const RegisterInterfaceSchema = z.object({
   revisoes: z.array(z.object({
     id: z.string().optional(),
     placaDoCarro: z.string(),
-    dataDaRevisao: DateSchema,
+    dataDaRevisao: DateSchemas,
     dataDaProximaRevisao: z.date().optional(),
     mensagemPredefinida: z.string().optional(),
     carroId: z.string(),
@@ -102,7 +96,7 @@ export const CarroInterfaceSchema = z.object({
   revisoes: z.array(z.object({
     id: z.string().optional(),
     placaDoCarro: z.string(),
-    dataDaRevisao: DateSchema,
+    dataDaRevisao: DateSchemas,
     dataDaProximaRevisao: z.date().optional(),
     mensagemPredefinida: z.string().optional(),
     carroId: z.string(),
@@ -162,13 +156,7 @@ export const OrdemEstoqueInterfaceSchema = z.object({
   aprovadoPorId: z.string().optional(),
 });
 
-const DateSchemas = z.string().transform((value) => {
-  const date = new Date(value);
-  if (isNaN(date.getTime())) {
-    throw new Error('Invalid date');
-  }
-  return date;
-});
+
 
 // Definição do schema de FuncionarioInterface
 export const FuncionarioInterfaceSchema = z.object({
