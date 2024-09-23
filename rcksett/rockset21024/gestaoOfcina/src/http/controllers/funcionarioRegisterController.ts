@@ -17,7 +17,6 @@ export class FuncionarioController {
                 tipo,
                 username,
             } = FuncionarioInterfaceSchema.parse(req.body);
-             console.log(cpf);
             const funcionariosUseCase = FactoriesfuncionariosUseCase();
 
             // Aqui você precisa obter o usuário autenticado (criador)

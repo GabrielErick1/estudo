@@ -16,11 +16,6 @@ export class PrismaUserRepository implements InterfaceAccount {
   })
   }
   async CreateAccount(data: RegisterInterface): Promise<Cliente> {
-    const ordensDeServicoData = data.ordensDeServico?.map(ordem => ({
-      ...ordem,
-      criadoPorId: ordem.criadoPorId ?? undefined,
-      aprovadoPorId: ordem.aprovadoPorId ?? undefined,
-    }));
 
     return prisma.cliente.create({
       data: {
@@ -31,7 +26,6 @@ export class PrismaUserRepository implements InterfaceAccount {
         cnpj: data.cnpj || undefined,
         password: data.password,
         telefone: data.telefone ?? null,
-        clienteCadastrador: data.clienteCadastrador ?? null,
         criadoPorId: data.criadoPorId ?? null,
         tipo: data.tipo ?? TipoCliente.COMUM, // Define "COMUM" como padrão
       }

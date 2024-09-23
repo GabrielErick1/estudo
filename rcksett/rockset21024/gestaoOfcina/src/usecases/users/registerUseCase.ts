@@ -44,6 +44,8 @@ export class RegisterUsecase {
   }
 
   async execute(data: RegisterInterface): Promise<RegisterUseCaseResponse> {
+    console.log("usecase", data);
+    
     await this.validateEmail(data.email);
     if(data.cpf){
        await this.validateCpf(data.cpf);
@@ -55,7 +57,7 @@ export class RegisterUsecase {
     const hashedPassword = await this.hashPassword(data.password);
 
     const tipoCliente = this.determineTipoCliente();
-
+      
     const createdUser = await this.userRepository.CreateAccount({
       ...data,
       password: hashedPassword,

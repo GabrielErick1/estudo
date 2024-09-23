@@ -2,7 +2,6 @@ import { FastifyReply, FastifyRequest } from 'fastify';
 import { z } from 'zod'; 
 import {RegisterInterfaceSchema} from "@/domain/usecases/zodOficina"
 import { AppError } from '@/utils/AppError';
-import { CarroInterface, OrdemDeServicoInterface, RevisaoInterface } from '@/domain/usecases/IRegisterUser';
 import { FactoriesregisterUseCase } from '@/usecases/factories/make.register-usecase-cliente';
 
 export const Register = async (req: FastifyRequest, res: FastifyReply) => {
@@ -65,7 +64,8 @@ export const Register = async (req: FastifyRequest, res: FastifyReply) => {
     telefone,
     criadoPorId,
   } = RegisterInterfaceSchema.parse(req.body);
-
+ 
+  
   try {
     const registerUseCase = FactoriesregisterUseCase();
     await registerUseCase.execute({
@@ -78,7 +78,7 @@ export const Register = async (req: FastifyRequest, res: FastifyReply) => {
       dataDeNascimento: dataDeNascimento ?? undefined,
       criadoPorId: criadoPorId ?? undefined,
     });
-
+   
     res.status(201).send({ message: "User registered successfully" });
 
   } catch (err) {
